@@ -94,8 +94,10 @@ class BotController extends Controller
                     'chat_id' => $chat_id,
                     'text' => "👨‍💻Admin: \n\n/reports Barcha hisobotlar",
                     'reply_markup' => json_encode([
-                        'inline_keyboard' => [
-                            [['text' => "Barcha hisobotlar", 'url' => '../../../../public/bot_page/index.html']],
+                        'keyboard' => [
+                            [['text' => "Barcha hisobotlar", 'web_app' => [
+                                "url" => "https://devapp.uz"
+                            ]]],
                         ]
                     ])
                 ]);
