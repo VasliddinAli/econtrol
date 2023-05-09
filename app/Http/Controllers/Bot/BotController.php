@@ -77,7 +77,7 @@ class BotController extends Controller
         //     return Admin::where('bot_chat_id', $chat_id)->first();
         // }
 
-        $managers = array(5803268621);
+        $managers = 5803268621;
 
         function startBot($chat_id)
         {
