@@ -97,7 +97,7 @@ class BotController extends Controller
                         'resize_keyboard' => true,
                         'keyboard' => [
                             [['text' => "Barcha hisobotlar", 'web_app' => [
-                                "url" => "https://econtrol.devapp.uz/public/bot_page/index.html"
+                                "url" => "https://econtrol.devapp.uz/public/bot_page/index.php"
                             ]]],
                         ]
                     ])
