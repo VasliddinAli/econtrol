@@ -39,6 +39,8 @@ Route::group(['middleware' => ['admin:admin']], function () {
 Route::middleware(['auth:sanctum,admin', 'verified'])
     ->get('/admin/dashboard', [IndexController::class, 'mainPage'])->name('dashboard');
 
+Route::get('attendance/bot/view', [AttendancesController::class, 'AttendanceBotView']);
+
 Route::middleware(['auth:admin'])->group(function () {
     Route::prefix('ceo')->group(function () {
         Route::get('/view', [CEOController::class, 'ceoView'])->name('all.ceo');
@@ -76,6 +78,5 @@ Route::middleware(['auth:admin'])->group(function () {
     });
     Route::prefix('attendance')->group(function () {
         Route::get('/view', [AttendancesController::class, 'AttendanceView'])->name('all.attendance');
-        Route::get('/bot/view', [AttendancesController::class, 'AttendanceBotView'])->name('all.botAttendance');
     });
 });

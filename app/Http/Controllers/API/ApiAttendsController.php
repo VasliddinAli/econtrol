@@ -21,7 +21,7 @@ class ApiAttendsController extends Controller
     {
         $time = Carbon::now();
         $now_time = Carbon::now()->timestamp;
-        $check_time = Carbon::create($time->year, $time->month, $time->day, 8, 0, 0)->timestamp;
+        $check_time = Carbon::create($time->year, $time->month, $time->day, 19, 0, 0)->timestamp;
         if ($now_time > $check_time) {
             return false;
         } else {
