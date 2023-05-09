@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\API\ApiAttendancesController;
+use App\Http\Controllers\API\ApiAttendsController;
 use App\Http\Controllers\API\ApiDeviceController;
 use App\Http\Controllers\API\ApiEmployeeController;
 use App\Http\Controllers\API\ApiPurposeController;
@@ -39,9 +39,9 @@ Route::prefix('employee')->group(function () {
     Route::get('{pinCode}/find', [ApiEmployeeController::class, 'findEmployeeByPinCode']);
 });
 Route::prefix('attendance')->group(function () {
-    Route::get('list', [ApiAttendancesController::class, 'getAttendance']);
-    Route::post('add', [ApiAttendancesController::class, 'addAttends']);
-    Route::post('late/purpose', [ApiAttendancesController::class, 'forLatePurpose']);
+    Route::get('list', [ApiAttendsController::class, 'getAttendance']);
+    Route::post('add', [ApiAttendsController::class, 'addAttends']);
+    Route::post('late/purpose', [ApiAttendsController::class, 'forLatePurpose']);
 });
 Route::prefix('purpose')->group(function () {
     Route::get('list', [ApiPurposeController::class, 'getPurpose']);
