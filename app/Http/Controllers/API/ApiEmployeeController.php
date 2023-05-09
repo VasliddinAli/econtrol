@@ -57,7 +57,7 @@ class ApiEmployeeController extends Controller
     {
         $employee = Employee::findOrFail($employee_id);
         $employee->update([
-            'employee_status' => 'deleted'
+            'status' => 'deleted'
         ]);
         return $this->sendResponse("", true, "Employee Deleted");
     }

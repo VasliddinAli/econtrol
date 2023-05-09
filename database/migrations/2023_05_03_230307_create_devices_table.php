@@ -17,6 +17,7 @@ class CreateDevicesTable extends Migration
             $table->id();
             $table->string('name')->nullable();
             $table->string('phone')->nullable();
+            $table->string('status')->default('active');
             $table->string('password')->nullable();
             $table->timestamps();
         });

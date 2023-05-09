@@ -96,8 +96,8 @@
                                         <div class="form-group">
                                             <label>Status</label>
                                             <select class="form-control" name="status" aria-label="Default select example">
-                                                <option selected value="Faol">Faol</option>
-                                                <option value="Nofaol">Nofaol</option>
+                                                <option selected value="active">Faol</option>
+                                                <option value="inacive">Nofaol</option>
                                             </select>
                                             @error('status')
                                             <span class="text-danger">{{ $message }}</span>

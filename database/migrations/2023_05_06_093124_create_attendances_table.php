@@ -18,7 +18,7 @@ class CreateAttendancesTable extends Migration
             $table->string('type');
             $table->string('date');
             $table->integer('employee_id');
-            $table->string('photo')->nullable();
+            $table->string('image')->nullable();
             $table->integer('device_id');
             $table->integer('purpose_id')->nullable();
             $table->timestamps();

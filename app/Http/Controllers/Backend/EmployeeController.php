@@ -12,7 +12,7 @@ class EmployeeController extends Controller
 {
     public function employeeView()
     {
-        $employees = Employee::where('employee_status', 'active')->get();
+        $employees = Employee::where('status', 'active')->get();
         return view('backend.employee.employee_view', compact('employees'));
     }
 
@@ -97,7 +97,7 @@ class EmployeeController extends Controller
     {
         $device = Employee::findOrFail($employee_id);
         $device->update([
-            'employee_status' => 'deleted'
+            'status' => 'deleted'
         ]);
         $notification = array(
             'message' => 'Xodim muvaffaqiyatli o\'chirildi!',
