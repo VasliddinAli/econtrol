@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Bot;
 
 use App\Http\Controllers\Controller;
+use App\Models\Attendance;
 use Illuminate\Support\Facades\Log;
 
 class BotController extends Controller
@@ -77,7 +78,7 @@ class BotController extends Controller
         //     return Admin::where('bot_chat_id', $chat_id)->first();
         // }
 
-        $managers = 5803268621;
+        $manager = 5803268621;
 
         function startBot($chat_id)
         {
@@ -88,14 +89,21 @@ class BotController extends Controller
         }
 
         if ($text == "/start") {
-            if ($chat_id == $managers) {
-                $commands = "\n\n/start Yangilash\n/pay_waiting_orders 🟡 To'lov kutilayotgan buyurtmalar \n/pay_confirmed_orders 🟢 To'lov tasdiqlangan buyurtmalar\n/completed_orders 🔵 Tugatilgan buyurtmalar\n/client_canceled_orders 🔴 Mijoz bekor qilgan buyurtmalar\n/operator_canceled_orders 🔴 Operator bekor qilgan buyurtmalar\n/stop_orders 🛑 Buyurtmalar olishni to'htatish\n/start_orders 🚀 Buyurtmalar olishni boshlash\n/find_client_by_phone 🔎 Telefon raqam bo'yicha mijozni qidirish";
+            if ($chat_id == $manager) {
+                $commands = "\n\n/reports Barcha hisobotlar";
                 sendResponse('sendMessage', [
                     'chat_id' => $chat_id,
                     'text' => "👨‍💻Admin: " . $commands,
                 ]);
+            } else {
+                startBot($chat_id);
             }
-            startBot($chat_id);
+        } elseif ($text == '/reports') {
+            $attendances = Attendance::get();
+            sendResponse('sendMessage', [
+                'chat_id' => $manager,
+                'text' => $attendances
+            ]);
         }
 
         // function getButton($order_or_user_id, $button_text, $status, $type)
