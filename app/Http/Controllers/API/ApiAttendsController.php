@@ -35,7 +35,7 @@ class ApiAttendsController extends Controller
         $date = $this->checkdate();
         $purposes = [];
 
-        if(!$date){
+        if(!$date && $request->type == 'input'){
             $moment = false;
             $purposes = Purpose::select('id', 'purpose')->get();
         }
