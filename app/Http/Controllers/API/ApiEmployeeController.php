@@ -12,7 +12,7 @@ class ApiEmployeeController extends Controller
 {
     public function getEmployees()
     {
-        $employees = Employee::where('employee_status', 'active')->get();
+        $employees = Employee::where('status', 'active')->get();
         return $this->sendResponse($employees, true, "");
     }
     // public function checkEmployeePin()
