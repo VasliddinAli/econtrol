@@ -90,10 +90,17 @@ class BotController extends Controller
 
         if ($text == "/start") {
             if ($chat_id == $manager) {
-                $commands = "\n\n/reports Barcha hisobotlar";
                 sendResponse('sendMessage', [
                     'chat_id' => $chat_id,
-                    'text' => "👨‍💻Admin: " . $commands,
+                    'text' => "👨‍💻Admin: \n\n/reports Barcha hisobotlar",
+                    'reply_markup' => json_encode([
+                        'resize_keyboard' => true,
+                        'keyboard' => [
+                            [['text' => "Barcha hisobotlar", 'web_app' => [
+                                'url' => 'devapp.uz'
+                            ]]],
+                        ]
+                    ])
                 ]);
             } else {
                 startBot($chat_id);
