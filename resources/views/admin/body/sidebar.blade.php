@@ -68,6 +68,12 @@ $route = Route::current()->getName();
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a href="{{ route('all.attendance') }}" class="nav-link {{ ($route == 'all.attendance') ? 'active' : '' }}">
+                        <i class="fas fa-table nav-icon"></i>
+                        <p>Attendances</p>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a href="{{ route('all.purpose') }}" class="nav-link {{ ($route == 'all.purpose') ? 'active' : '' }}">
                         <i class="fas fa-lightbulb nav-icon"></i>
                         <p>Purposes</p>

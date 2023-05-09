@@ -8,6 +8,7 @@ use App\Http\Controllers\Backend\CEOController;
 use App\Http\Controllers\Backend\DeviceController;
 use App\Http\Controllers\Backend\EmployeeController;
 use App\Http\Controllers\Backend\PurposeController;
+use App\Http\Controllers\Backend\AttendancesController;
 use App\Http\Controllers\Bot\BotController;
 
 /*
@@ -72,5 +73,8 @@ Route::middleware(['auth:admin'])->group(function () {
         Route::get('/edit/{id}', [PurposeController::class, 'PurposeEdit'])->name('purpose.edit');
         Route::post('/update/{id}', [PurposeController::class, 'PurposeUpdate'])->name('purpose.update');
         Route::get('/delete/{id}', [PurposeController::class, 'PurposeDelete'])->name('purpose.delete');
+    });
+    Route::prefix('attendance')->group(function () {
+        Route::get('/view', [AttendancesController::class, 'AttendanceView'])->name('all.attendance');
     });
 });

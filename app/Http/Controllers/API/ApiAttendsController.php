@@ -9,7 +9,7 @@ use App\Models\Purpose;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
-class ApiAttendsController extends Controller
+class ApiAttendancesController extends Controller
 {
     public function getAttendance()
     {

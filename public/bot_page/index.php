@@ -18,56 +18,9 @@
     <h1 class="text-center text-dark fs-3 mt-3 mb-3">Barcha hisobotlar</h1>
 
     <div class="container d-flex align-items-center justify-content-center flex-wrap gap-2">
-        <div class="card" style="width: 18rem;">
-            <img src="../upload/images/1683627914.jpg" class="card-img-top">
-            <div class="card-body">
-                <h5 class="card-title fw-bold">Vasliddin Alijonov</h5>
-                <p class="card-text p-0 m-0 fw-bold">Web developer</p>
-                <p class="card-text p-0 m-0">Type: Kech qoldi</p>
-                <p class="card-text p-0 m-0">Device: 1</p>
-                <p class="card-text p-0 m-0">Date: 12:30</p>
-            </div>
-        </div>
-        <div class="card" style="width: 18rem;">
-            <img src="../upload/images/1683627914.jpg" class="card-img-top">
-            <div class="card-body">
-                <h5 class="card-title fw-bold">Vasliddin Alijonov</h5>
-                <p class="card-text p-0 m-0 fw-bold">Web developer</p>
-                <p class="card-text p-0 m-0">Type: Kech qoldi</p>
-                <p class="card-text p-0 m-0">Device: 1</p>
-                <p class="card-text p-0 m-0">Date: 12:30</p>
-            </div>
-        </div>
-        <div class="card" style="width: 18rem;">
-            <img src="../upload/images/1683627914.jpg" class="card-img-top">
-            <div class="card-body">
-                <h5 class="card-title fw-bold">Vasliddin Alijonov</h5>
-                <p class="card-text p-0 m-0 fw-bold">Web developer</p>
-                <p class="card-text p-0 m-0">Type: Kech qoldi</p>
-                <p class="card-text p-0 m-0">Device: 1</p>
-                <p class="card-text p-0 m-0">Date: 12:30</p>
-            </div>
-        </div>
-        <div class="card" style="width: 18rem;">
-            <img src="../upload/images/1683627914.jpg" class="card-img-top">
-            <div class="card-body">
-                <h5 class="card-title fw-bold">Vasliddin Alijonov</h5>
-                <p class="card-text p-0 m-0 fw-bold">Web developer</p>
-                <p class="card-text p-0 m-0">Type: Kech qoldi</p>
-                <p class="card-text p-0 m-0">Device: 1</p>
-                <p class="card-text p-0 m-0">Date: 12:30</p>
-            </div>
-        </div>
-        <div class="card" style="width: 18rem;">
-            <img src="../upload/images/1683627914.jpg" class="card-img-top">
-            <div class="card-body">
-                <h5 class="card-title fw-bold">Vasliddin Alijonov</h5>
-                <p class="card-text p-0 m-0 fw-bold">Web developer</p>
-                <p class="card-text p-0 m-0">Type: Kech qoldi</p>
-                <p class="card-text p-0 m-0">Device: 1</p>
-                <p class="card-text p-0 m-0">Date: 12:30</p>
-            </div>
-        </div>
+        <?php 
+            foreach()
+        ?>
         <div class="card" style="width: 18rem;">
             <img src="../upload/images/1683627914.jpg" class="card-img-top">
             <div class="card-body">
