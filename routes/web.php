@@ -76,5 +76,6 @@ Route::middleware(['auth:admin'])->group(function () {
     });
     Route::prefix('attendance')->group(function () {
         Route::get('/view', [AttendancesController::class, 'AttendanceView'])->name('all.attendance');
+        Route::get('/bot/view', [AttendancesController::class, 'AttendanceBotView'])->name('all.botAttendance');
     });
 });

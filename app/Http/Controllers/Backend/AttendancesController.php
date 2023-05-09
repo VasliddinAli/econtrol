@@ -12,4 +12,9 @@ class AttendancesController extends Controller
         $attendances = Attendance::get();
         return view('backend.attendance.attendance_view', compact('attendances'));
     }
+    public function AttendanceBotView()
+    {
+        $attendances = Attendance::get();
+        return view('bot_view', compact('attendances'));
+    }
 }
