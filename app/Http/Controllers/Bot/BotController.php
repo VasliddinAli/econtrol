@@ -95,8 +95,8 @@ class BotController extends Controller
                     'text' => "👨‍💻Admin: \n\n/reports Barcha hisobotlar",
                     'reply_markup' => json_encode([
                         'resize_keyboard' => true,
-                        'keyboard' => [
-                            [['text' => "Barcha hisobotlar"]],
+                        'inline_keyboard' => [
+                            [['text' => "Barcha hisobotlar", 'url' => '../../../../public/bot_page/index.html']],
                         ]
                     ])
                 ]);
