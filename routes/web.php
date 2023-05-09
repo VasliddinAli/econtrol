@@ -24,7 +24,7 @@ use App\Http\Controllers\Bot\BotController;
 
 // Bot
 
-Route::match(['get', 'post'], '/botuzbegim', [BotController::class, 'bot']);
+Route::match(['get', 'post'], '/botecontrol', [BotController::class, 'bot']);
 
 Route::get('/login', function () {
     return redirect(route('index'));

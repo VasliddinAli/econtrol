@@ -15,8 +15,7 @@ class BotController extends Controller
 {
     public function bot()
     {
-
-        define('API_KEY', '5989425380:AAHyv9jEf9-rxtXC3g5DRw9JRB8dunpfcvA');
+        define('API_KEY', '6003340158:AAF3BmwSH3HrU9Kaz69vC9hXtp5zhH-lIbQ');
 
         function sendResponse($method, $datas = [])
         {
