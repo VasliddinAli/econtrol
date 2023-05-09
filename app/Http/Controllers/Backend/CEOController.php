@@ -3,26 +3,26 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use App\Models\Brand;
+use App\Models\CEO;
 use App\Models\Region;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
-class BrandController extends Controller
+class CEOController extends Controller
 {
-    public function brandView()
+    public function ceoView()
     {
-        $brands = Brand::where('status', 'active')->get();
-        return view('backend.brand.brand_view', compact('brands'));
+        $ceos = CEO::where('status', 'active')->get();
+        return view('backend.ceo.ceo_view', compact('ceos'));
     }
 
-    public function brandStore(Request $request)
+    public function ceoStore(Request $request)
     {
         $request->validate(
             [
                 'name' => 'required',
-                'phone' => 'required|unique:brands',
+                'phone' => 'required|unique:ceos',
                 'password' => 'required',
             ],
             [
@@ -34,7 +34,7 @@ class BrandController extends Controller
         );
         $password = Hash::make($request->password);
 
-        Brand::insert([
+        CEO::insert([
             'name' => $request->name,
             'phone' => $request->phone,
             'password' => $password,
@@ -48,13 +48,13 @@ class BrandController extends Controller
         return redirect()->back()->with($notification);
     }
 
-    public function brandEdit($brand_id)
+    public function ceoEdit($ceo_id)
     {
-        $brand = Brand::findOrFail($brand_id);
-        return view('backend.brand.brand_edit', compact('brand'));
+        $ceo = CEO::findOrFail($ceo_id);
+        return view('backend.ceo.ceo_edit', compact('ceo'));
     }
 
-    public function brandUpdate(Request $request, $brand_id)
+    public function ceoUpdate(Request $request, $ceo_id)
     {
 
         $request->validate(
@@ -65,8 +65,8 @@ class BrandController extends Controller
                 'name.required' => 'CEO nomini kiriting',
             ]
         );
-        $brand = Brand::where('id', $brand_id)->first();
-        $brand->update([
+        $ceo = CEO::where('id', $ceo_id)->first();
+        $ceo->update([
             'name' => $request->name,
             'phone' => $request->phone,
         ]);
@@ -75,31 +75,31 @@ class BrandController extends Controller
             'message' => 'CEO muvaffaqiyatli o\'zgartirildi!',
             'alert-type' => 'success'
         );
-        return redirect()->route('all.brand')->with($notification);
+        return redirect()->route('all.ceo')->with($notification);
     }
 
-    public function brandDelete($brand_id)
+    public function ceoDelete($ceo_id)
     {
 
-        $brand = Brand::findOrFail($brand_id);
-        $brand->update([
+        $ceo = CEO::findOrFail($ceo_id);
+        $ceo->update([
             'status' => 'deleted'
         ]);
         $notification = array(
             'message' => 'CEO muvaffaqiyatli o\'chirildi!',
             'alert-type' => 'info'
         );
-        return redirect()->route('all.brand')->with($notification);
+        return redirect()->route('all.ceo')->with($notification);
     }
 
-    public function brandShow($brand_id)
+    public function ceoShow($ceo_id)
     {
-        $brand = Brand::findOrFail($brand_id);
+        $ceo = CEO::findOrFail($ceo_id);
         $regions = Region::get();
-        return view('backend.brand.brand_detail', compact('brand', 'regions'));
+        return view('backend.ceo.ceo_detail', compact('ceo', 'regions'));
     }
 
-    public function brandUpdateLogin(Request $request, $brand_id)
+    public function ceoUpdateLogin(Request $request, $ceo_id)
     {
 
         $request->validate(
@@ -114,9 +114,9 @@ class BrandController extends Controller
         );
         $password = Hash::make($request->password);
 
-        $brand = Brand::where('id', $brand_id)->first();
+        $ceo = CEO::where('id', $ceo_id)->first();
 
-        $brand->update([
+        $ceo->update([
             'phone' => $request->phone,
             'password' => $password,
         ]);

@@ -17,7 +17,7 @@
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Asosiy</a></li>
-                    <li class="breadcrumb-item"><a href="{{ route('all.brand') }}">CEO</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('all.ceo') }}">CEO</a></li>
                     <li class="breadcrumb-item active">CEO</li>
                 </ol>
             </div>
@@ -39,20 +39,20 @@
                     </div>
                     <div class="card-body box-profile">
 
-                        <h3 class="profile-username text-center">{{ $brand->name }}</h3>
+                        <h3 class="profile-username text-center">{{ $ceo->name }}</h3>
 
                         <ul class="list-group list-group-unbordered mb-3">
                             <li class="list-group-item">
-                                <b><i class="fas fa-list-ol mr-1"></i>ID :</b> <a class="float-right">{{ $brand->id
+                                <b><i class="fas fa-list-ol mr-1"></i>ID :</b> <a class="float-right">{{ $ceo->id
                                     }}</a>
                             </li>
                             <li class="list-group-item">
                                 <b><i class="fas fa-user mr-1"></i>Nomi :</b> <a class="float-right">{{
-                                    $brand->name }}</a>
+                                    $ceo->name }}</a>
                             </li>
                         </ul>
 
-                        <a href="{{ route('brand.delete', $brand->id) }}"
+                        <a href="{{ route('ceo.delete', $ceo->id) }}"
                                 class="btn btn-danger btn-block mt-2" id="delete"><b>O'chirish</b></a>
                     </div>
                     <!-- /.card-body -->
@@ -78,7 +78,7 @@
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="card">
-                                            <form method="POST" action="{{ route('brand_login.update', $brand->id) }}" enctype="multipart/form-data">
+                                            <form method="POST" action="{{ route('ceo_login.update', $ceo->id) }}" enctype="multipart/form-data">
                                                 @csrf
                                                 <div class="card-body">
                                                     <div class="col-md-12">
@@ -86,7 +86,7 @@
                                                             <div class="col-md-6">
                                                                 <div class="form-group">
                                                                     <label>Telefon</label>
-                                                                    <input type="number" name="phone" value="{{ $brand->phone }}" class="form-control">
+                                                                    <input type="number" name="phone" value="{{ $ceo->phone }}" class="form-control">
                                                                     @error('phone')
                                                                     <span class="text-danger">{{ $message }}</span>
                                                                     @enderror
@@ -128,7 +128,7 @@
             var region_id = $(this).val();
             if (region_id) {
                 $.ajax({
-                    url: "{{  url('/brands/branches/region/district/ajax') }}/" + region_id,
+                    url: "{{  url('/ceos/branches/region/district/ajax') }}/" + region_id,
                     type: "GET",
                     dataType: "json",
                     success: function (data) {

@@ -40,15 +40,15 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach ($brands as $item)
+                                @foreach ($ceos as $item)
                                     <tr>
                                         <td width="1%">{{ $item->id }}</td>
                                         <td>{{ $item->name }}</td>
                                         <td>{{ $item->phone }}</td>
                                         <td width="12%">
-                                            <a href="{{ route('brand.show', $item->id) }}" class="btn btn-primary" title="Ko'rish"><i class="fas fa-eye"></i></a>
-                                            <a href="{{ route('brand.edit', $item->id) }}" class="btn btn-info" title="O'zgartirish"><i class="fas fa-edit"></i></a>
-                                            <a href="{{ route('brand.delete', $item->id) }}" class="btn btn-danger" title="O'chirish" id="delete"><i class="fas fa-trash"></i></a>
+                                            <a href="{{ route('ceo.show', $item->id) }}" class="btn btn-primary" title="Ko'rish"><i class="fas fa-eye"></i></a>
+                                            <a href="{{ route('ceo.edit', $item->id) }}" class="btn btn-info" title="O'zgartirish"><i class="fas fa-edit"></i></a>
+                                            <a href="{{ route('ceo.delete', $item->id) }}" class="btn btn-danger" title="O'chirish" id="delete"><i class="fas fa-trash"></i></a>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -67,7 +67,7 @@
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <form method="POST" action="{{ route('brand.store') }}" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('ceo.store') }}" enctype="multipart/form-data">
                             @csrf
                             <div class="card-body">
                                 <div class="col-md-12">

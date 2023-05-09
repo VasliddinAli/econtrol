@@ -18,8 +18,8 @@ class CreateEmployeesTable extends Migration
             $table->string('name')->nullable();
             $table->string('position')->nullable();
             $table->string('status')->nullable();
-            $table->integer('phone')->nullable();
-            $table->integer('pin_code')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('pin_code')->nullable();
             $table->timestamps();
         });
     }

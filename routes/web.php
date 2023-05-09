@@ -4,7 +4,7 @@ use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Backend\IndexController;
-use App\Http\Controllers\Backend\BrandController;
+use App\Http\Controllers\Backend\CEOController;
 use App\Http\Controllers\Backend\DeviceController;
 use App\Http\Controllers\Backend\EmployeeController;
 use App\Http\Controllers\Backend\PurposeController;
@@ -39,14 +39,14 @@ Route::middleware(['auth:sanctum,admin', 'verified'])
     ->get('/admin/dashboard', [IndexController::class, 'mainPage'])->name('dashboard');
 
 Route::middleware(['auth:admin'])->group(function () {
-    Route::prefix('brands')->group(function () {
-        Route::get('/view', [BrandController::class, 'brandView'])->name('all.brand');
-        Route::post('/store', [BrandController::class, 'brandStore'])->name('brand.store');
-        Route::get('/edit/{id}', [BrandController::class, 'brandEdit'])->name('brand.edit');
-        Route::get('/show/{id}', [BrandController::class, 'brandShow'])->name('brand.show');
-        Route::post('/update/{id}', [BrandController::class, 'brandUpdate'])->name('brand.update');
-        Route::post('/update_login/{id}', [BrandController::class, 'brandUpdateLogin'])->name('brand_login.update');
-        Route::get('/delete/{id}', [BrandController::class, 'brandDelete'])->name('brand.delete');
+    Route::prefix('ceo')->group(function () {
+        Route::get('/view', [CEOController::class, 'ceoView'])->name('all.ceo');
+        Route::post('/store', [CEOController::class, 'ceoStore'])->name('ceo.store');
+        Route::get('/edit/{id}', [CEOController::class, 'ceoEdit'])->name('ceo.edit');
+        Route::get('/show/{id}', [CEOController::class, 'ceoShow'])->name('ceo.show');
+        Route::post('/update/{id}', [CEOController::class, 'ceoUpdate'])->name('ceo.update');
+        Route::post('/update_login/{id}', [CEOController::class, 'ceoUpdateLogin'])->name('ceo_login.update');
+        Route::get('/delete/{id}', [CEOController::class, 'ceoDelete'])->name('ceo.delete');
     });
     Route::prefix('device')->group(function () {
         Route::get('/view', [DeviceController::class, 'DeviceView'])->name('all.device');
