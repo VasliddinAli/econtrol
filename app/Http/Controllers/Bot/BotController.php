@@ -96,9 +96,7 @@ class BotController extends Controller
                     'reply_markup' => json_encode([
                         'resize_keyboard' => true,
                         'keyboard' => [
-                            [['text' => "Barcha hisobotlar", 'web_app' => [
-                                'url' => 'devapp.uz'
-                            ]]],
+                            [['text' => "Barcha hisobotlar"]],
                         ]
                     ])
                 ]);
