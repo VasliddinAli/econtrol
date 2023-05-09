@@ -22,7 +22,7 @@ class CEOController extends Controller
         $request->validate(
             [
                 'name' => 'required',
-                'phone' => 'required|unique:ceos',
+                'phone' => 'required|unique:c_e_o_s',
                 'password' => 'required',
             ],
             [
@@ -95,8 +95,7 @@ class CEOController extends Controller
     public function ceoShow($ceo_id)
     {
         $ceo = CEO::findOrFail($ceo_id);
-        $regions = Region::get();
-        return view('backend.ceo.ceo_detail', compact('ceo', 'regions'));
+        return view('backend.ceo.ceo_detail', compact('ceo'));
     }
 
     public function ceoUpdateLogin(Request $request, $ceo_id)
