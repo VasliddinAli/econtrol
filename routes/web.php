@@ -1,0 +1,76 @@
+<?php
+
+use App\Http\Controllers\AdminController;
+use Illuminate\Support\Facades\Route;
+
+use App\Http\Controllers\Backend\IndexController;
+use App\Http\Controllers\Backend\BrandController;
+use App\Http\Controllers\Backend\DeviceController;
+use App\Http\Controllers\Backend\EmployeeController;
+use App\Http\Controllers\Backend\PurposeController;
+use App\Http\Controllers\Bot\BotController;
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
+|
+*/
+
+
+// Bot
+
+Route::match(['get', 'post'], '/botuzbegim', [BotController::class, 'bot']);
+
+Route::get('/login', function () {
+    return redirect(route('index'));
+});
+Route::get('/', [AdminController::class, 'loginForm'])->name('index');
+Route::get('/admin/logout', [AdminController::class, 'destroy'])->name('admin.logout');
+
+Route::group(['middleware' => ['admin:admin']], function () {
+    Route::post('/', [AdminController::class, 'store'])->name('admin.login');
+});
+Route::middleware(['auth:sanctum,admin', 'verified'])
+    ->get('/admin/dashboard', [IndexController::class, 'mainPage'])->name('dashboard');
+
+Route::middleware(['auth:admin'])->group(function () {
+    Route::prefix('brands')->group(function () {
+        Route::get('/view', [BrandController::class, 'brandView'])->name('all.brand');
+        Route::post('/store', [BrandController::class, 'brandStore'])->name('brand.store');
+        Route::get('/edit/{id}', [BrandController::class, 'brandEdit'])->name('brand.edit');
+        Route::get('/show/{id}', [BrandController::class, 'brandShow'])->name('brand.show');
+        Route::post('/update/{id}', [BrandController::class, 'brandUpdate'])->name('brand.update');
+        Route::post('/update_login/{id}', [BrandController::class, 'brandUpdateLogin'])->name('brand_login.update');
+        Route::get('/delete/{id}', [BrandController::class, 'brandDelete'])->name('brand.delete');
+    });
+    Route::prefix('device')->group(function () {
+        Route::get('/view', [DeviceController::class, 'DeviceView'])->name('all.device');
+        Route::post('/store', [DeviceController::class, 'DeviceStore'])->name('device.store');
+        Route::get('/edit/{id}', [DeviceController::class, 'DeviceEdit'])->name('device.edit');
+        Route::get('/show/{id}', [DeviceController::class, 'DeviceShow'])->name('device.show');
+        Route::post('/update/{id}', [DeviceController::class, 'DeviceUpdate'])->name('device.update');
+        Route::post('/update_login/{id}', [DeviceController::class, 'DeviceUpdateLogin'])->name('device_login.update');
+        Route::get('/delete/{id}', [DeviceController::class, 'DeviceDelete'])->name('device.delete');
+    });
+    Route::prefix('employee')->group(function () {
+        Route::get('/view', [EmployeeController::class, 'EmployeeView'])->name('all.employee');
+        Route::post('/store', [EmployeeController::class, 'EmployeeStore'])->name('employee.store');
+        Route::get('/edit/{id}', [EmployeeController::class, 'EmployeeEdit'])->name('employee.edit');
+        Route::get('/show/{id}', [EmployeeController::class, 'EmployeeShow'])->name('employee.show');
+        Route::post('/update/{id}', [EmployeeController::class, 'EmployeeUpdate'])->name('employee.update');
+        Route::post('/update_login/{id}', [EmployeeController::class, 'EmployeeUpdateLogin'])->name('employee_login.update');
+        Route::get('/delete/{id}', [EmployeeController::class, 'EmployeeDelete'])->name('employee.delete');
+    });
+    Route::prefix('purpose')->group(function () {
+        Route::get('/view', [PurposeController::class, 'PurposeView'])->name('all.purpose');
+        Route::post('/store', [PurposeController::class, 'PurposeStore'])->name('purpose.store');
+        Route::get('/edit/{id}', [PurposeController::class, 'PurposeEdit'])->name('purpose.edit');
+        Route::post('/update/{id}', [PurposeController::class, 'PurposeUpdate'])->name('purpose.update');
+        Route::get('/delete/{id}', [PurposeController::class, 'PurposeDelete'])->name('purpose.delete');
+    });
+});

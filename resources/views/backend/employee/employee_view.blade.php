@@ -1,0 +1,159 @@
+@extends('admin.admin_master')
+
+@section('admin')
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Employee</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Asosiy</a></li>
+                    <li class="breadcrumb-item active">Employee</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-8">
+                <div class="card">
+                    <!-- <div class="card-header">
+                            <h3 class="card-title">Categories</h3>
+                        </div> -->
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <table id="example1" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Nomi</th>
+                                    <th>Holati</th>
+                                    <th>Status</th>
+                                    <th>Telefon</th>
+                                    <th>Pin kod</th>
+                                    <th>Boshqarish</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($employees as $item)
+                                <tr>
+                                    <td width="1%">{{ $item->id }}</td>
+                                    <td>{{ $item->name }}</td>
+                                    <td>{{ $item->position }}</td>
+                                    <td>{{ $item->status }}</td>
+                                    <td>{{ $item->phone }}</td>
+                                    <td>{{ $item->pin_code }}</td>
+                                    <td width="12%">
+                                        <a href="{{ route('employee.show', $item->id) }}" class="btn btn-primary" title="Ko'rish"><i class="fas fa-eye"></i></a>
+                                        <a href="{{ route('employee.edit', $item->id) }}" class="btn btn-info" title="O'zgartirish"><i class="fas fa-edit"></i></a>
+                                        <a href="{{ route('employee.delete', $item->id) }}" class="btn btn-danger" title="O'chirish" id="delete"><i class="fas fa-trash"></i></a>
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <div class="col-md-4">
+                <!-- general form elements -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Employee qo'shish</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <form method="POST" action="{{ route('employee.store') }}" enctype="multipart/form-data">
+                        @csrf
+                        <div class="card-body">
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Nomi</label>
+                                            <input type="text" name="name" class="form-control">
+                                            @error('name')
+                                            <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Position</label>
+                                            <input type="text" name="position" class="form-control">
+                                            @error('position')
+                                            <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Status</label>
+                                            <select class="form-control" name="status" aria-label="Default select example">
+                                                <option selected value="Faol">Faol</option>
+                                                <option value="Nofaol">Nofaol</option>
+                                            </select>
+                                            @error('status')
+                                            <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Telefon</label>
+                                            <input type="tel" name="phone" class="form-control">
+                                            @error('phone')
+                                            <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-end">
+                                    <input type="submit" class="btn btn-rounded btn-primary" value="Qo'shish">
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.card-body -->
+
+                    </form>
+                </div>
+                <!-- /.card -->
+            </div>
+        </div>
+        <!-- /.row -->
+
+    </div>
+    <!-- /.container-fluid -->
+</section>
+<!-- /.content -->
+
+
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('a[name="center_id"]').on('change', function() {
+            var center_id = $(this).val();
+            if (center_id) {
+                $.ajax({
+                    url: "{{  url('/training/center/image/ajax') }}/" + center_id,
+                    type: "GET",
+                    dataType: "json",
+                    // success: function (data) {
+                    //     var d = $('select[name="district_id"]').empty();
+                    //     $.each(data, function (key, value) {
+                    //         $('select[name="district_id"]').append('<option value="' + value.id + '">' + value.name_uz + '</option>');
+                    //     });
+                    // },
+                });
+            } else {
+                alert('danger');
+            }
+        });
+    });
+</script>
+
+@endsection
