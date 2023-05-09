@@ -92,7 +92,7 @@ class BotController extends Controller
             if ($chat_id == $manager) {
                 sendResponse('sendMessage', [
                     'chat_id' => $chat_id,
-                    'text' => "👨‍💻Admin: \n\n/reports Barcha hisobotlar",
+                    'text' => "👨‍💻Admin: \n\nBarcha hisobotlar 👇👇👇",
                     'reply_markup' => json_encode([
                         'resize_keyboard' => true,
                         'keyboard' => [
