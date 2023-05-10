@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Attendance;
+use App\Models\Purpose;
 
 class AttendancesController extends Controller
 {
@@ -16,6 +17,7 @@ class AttendancesController extends Controller
     public function AttendanceBotView()
     {
         $attendances = Attendance::orderBy('id', 'DESC')->get();
+        
         return view('backend.attendance.bot_view', compact('attendances'));
     }
 

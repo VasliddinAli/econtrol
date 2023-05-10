@@ -34,12 +34,12 @@
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Image</th>
-                                    <th>Type</th>
-                                    <th>Date</th>
-                                    <th>Employee_id</th>
-                                    <th>Device_id</th>
-                                    <th>Purpose_id</th>
+                                    <th>Rasmi</th>
+                                    <th>Holati</th>
+                                    <th>Vaqti</th>
+                                    <th>Hodim</th>
+                                    <th>Qurilma</th>
+                                    <th>Sabab</th>
                                     <th>Boshqarish</th>
                                 </tr>
                             </thead>
@@ -52,9 +52,9 @@
                                     </td>
                                     <td>{{ $item->type }}</td>
                                     <td>{{ $item->date }}</td>
-                                    <td>{{ $item->employee_id }}</td>
-                                    <td>{{ $item->device_id }}</td>
-                                    <td>{{ $item->purpose_id }}</td>
+                                    <td>{{ $item->employee->name }}</td>
+                                    <td>{{ $item->device->name }}</td>
+                                    <td>{{ $item->purpose->purpose }}</td>
                                     <td width="10%">
                                         <a href="{{ route('attendance.delete', $item->id) }}" class="btn btn-danger" title="O'chirish" id="delete"><i class="fas fa-trash"></i></a>
                                     </td>

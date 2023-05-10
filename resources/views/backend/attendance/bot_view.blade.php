@@ -68,12 +68,12 @@
                                     <thead>
                                         <tr>
                                             <th>ID</th>
-                                            <th>Image</th>
-                                            <th>Type</th>
-                                            <th>Date</th>
-                                            <th>Employee_id</th>
-                                            <th>Device_id</th>
-                                            <th>Purpose_id</th>
+                                            <th>Rasmi</th>
+                                            <th>Holati</th>
+                                            <th>Vaqti</th>
+                                            <th>Hodim</th>
+                                            <th>Qurilma</th>
+                                            <th>Sabab</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -85,9 +85,9 @@
                                             </td>
                                             <td>{{ $item->type }}</td>
                                             <td>{{ $item->date }}</td>
-                                            <td>{{ $item->employee_id }}</td>
-                                            <td>{{ $item->device_id }}</td>
-                                            <td>{{ $item->purpose_id }}</td>
+                                            <td>{{ $item->employee->name }}</td>
+                                            <td>{{ $item->device->name }}</td>
+                                            <td>{{ $item->purpose->purpose }}</td>
                                         </tr>
                                         @endforeach
                                     </tbody>
