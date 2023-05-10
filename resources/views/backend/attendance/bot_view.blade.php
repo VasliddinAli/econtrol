@@ -197,10 +197,6 @@
                 "responsive": true,
                 "lengthChange": false,
                 "autoWidth": false,
-                "buttons": [{
-                    extend: 'copy',
-                    text: 'Nusxa olish'
-                }, "excel", "pdf"],
                 "oLanguage": {
                     "sSearch": "Qidirish:"
                 },
@@ -213,7 +209,6 @@
                         "next": "Keyingi",
                     }
                 }
-                // "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
             }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
 
             $("#example3").DataTable({
