@@ -33,8 +33,8 @@ class AttendancesController extends Controller
     public function AttendanceBotDelete($id)
     {
         $attendace = Attendance::where('id', $id)->first();
-        $attendace->delete();
         unlink($attendace->image);
+        $attendace->delete();
         $notification = array(
             'message' => 'Davomat muvaffaqiyatli o\'chirildi!',
             'alert-type' => 'info'
