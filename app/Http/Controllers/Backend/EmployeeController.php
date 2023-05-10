@@ -44,15 +44,18 @@ class EmployeeController extends Controller
                 'phone.unique' => 'Telefon mavjud',
             ]
         );
-        $employee = Employee::create([
+
+        $pin = $this->checkEmployeePin();
+        $pin_code = str_pad($pin, 4, "0", STR_PAD_LEFT);
+
+        Employee::create([
             'name' => $request->name,
             'position' => $request->position,
             'status' => $request->status,
             'phone' => $request->phone,
+            'pin_code' => $pin_code,
             'created_at' => Carbon::now()
         ]);
-        $pin_code = str_pad($employee->id, 4, "0", STR_PAD_LEFT);
-        $employee->update(['pin_code' => $pin_code]);
 
         $notification = array(
             'message' => 'Xodim muvaffaqiyatli qo\'shildi!',

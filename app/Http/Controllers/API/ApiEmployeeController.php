@@ -15,20 +15,21 @@ class ApiEmployeeController extends Controller
         $employees = Employee::where('status', 'active')->get();
         return $this->sendResponse($employees, true, "");
     }
-    // public function checkEmployeePin()
-    // {
-    //     $pin_code = rand(1, 9999);
-    //     $pin = Employee::where('pin_code', $pin_code)->first();
-    //     if ($pin == null) {
-    //         return $pin_code;
-    //     } else {
-    //         return $this->checkEmployeePin();
-    //     }
-    // }
+    public function checkEmployeePin()
+    {
+        $pin_code = rand(1, 9999);
+        $pin = Employee::where('pin_code', $pin_code)->first();
+        if ($pin == null) {
+            return $pin_code;
+        } else {
+            return $this->checkEmployeePin();
+        }
+    }
     public function addEmployee(Request $request)
     {
         $employee = new Employee();
-        $pin_code = str_pad($employee->id, 4, "0", STR_PAD_LEFT);
+        $pin = $this->checkEmployeePin();
+        $pin_code = str_pad($pin, 4, "0", STR_PAD_LEFT);
         $employee->name = $request->name;
         $employee->position = $request->position;
         $employee->status = $request->status;
