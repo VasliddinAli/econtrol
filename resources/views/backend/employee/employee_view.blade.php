@@ -55,6 +55,7 @@
                                         <a href="{{ route('employee.show', $item->id) }}" class="btn btn-primary" title="Ko'rish"><i class="fas fa-eye"></i></a>
                                         <a href="{{ route('employee.edit', $item->id) }}" class="btn btn-info" title="O'zgartirish"><i class="fas fa-edit"></i></a>
                                         <a href="{{ route('employee.delete', $item->id) }}" class="btn btn-danger" title="O'chirish" id="delete"><i class="fas fa-trash"></i></a>
+                                        <a href="{{ $item->qrcode }}" class="btn btn-warning" title="QR code" target="_blank"><i class="fas fa-qrcode"></i></a>
                                     </td>
                                 </tr>
                                 @endforeach
@@ -97,7 +98,7 @@
                                             <label>Status</label>
                                             <select class="form-control" name="status" aria-label="Default select example">
                                                 <option selected value="active">Faol</option>
-                                                <option value="inacive">Nofaol</option>
+                                                <option value="inactive">Nofaol</option>
                                             </select>
                                             @error('status')
                                             <span class="text-danger">{{ $message }}</span>

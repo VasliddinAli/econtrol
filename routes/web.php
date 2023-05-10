@@ -63,6 +63,7 @@ Route::middleware(['auth:admin'])->group(function () {
     });
     Route::prefix('employee')->group(function () {
         Route::get('/view', [EmployeeController::class, 'EmployeeView'])->name('all.employee');
+        Route::get('/qr/{id}', [EmployeeController::class, 'qrCode'])->name('all.qr');
         Route::post('/store', [EmployeeController::class, 'EmployeeStore'])->name('employee.store');
         Route::get('/edit/{id}', [EmployeeController::class, 'EmployeeEdit'])->name('employee.edit');
         Route::get('/show/{id}', [EmployeeController::class, 'EmployeeShow'])->name('employee.show');

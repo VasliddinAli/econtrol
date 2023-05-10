@@ -12,7 +12,7 @@ class ApiEmployeeController extends Controller
 {
     public function getEmployees()
     {
-        $employees = Employee::where('status', 'active')->get();
+        $employees = Employee::where('status', '!=', 'deleted')->get();
         return $this->sendResponse($employees, true, "");
     }
     public function checkEmployeePin()
@@ -35,6 +35,7 @@ class ApiEmployeeController extends Controller
         $employee->status = $request->status;
         $employee->phone = $request->phone;
         $employee->pin_code = $pin_code;
+        $employee->qrcode = "https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=$pin_code";
         $employee->save();
         return $this->sendResponse($employee, true, "Employee Created");
     }

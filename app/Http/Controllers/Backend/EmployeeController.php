@@ -12,7 +12,7 @@ class EmployeeController extends Controller
 {
     public function employeeView()
     {
-        $employees = Employee::where('status', 'active')->get();
+        $employees = Employee::where('status', '!=', 'deleted')->get();
         return view('backend.employee.employee_view', compact('employees'));
     }
 
@@ -54,6 +54,7 @@ class EmployeeController extends Controller
             'status' => $request->status,
             'phone' => $request->phone,
             'pin_code' => $pin_code,
+            'qrcode' => "https://api.qrserver.com/v1/create-qr-code/?size=500x500&data=$pin_code",
             'created_at' => Carbon::now()
         ]);
 
