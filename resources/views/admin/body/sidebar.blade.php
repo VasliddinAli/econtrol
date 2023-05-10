@@ -57,25 +57,25 @@ $route = Route::current()->getName();
                 <li class="nav-item">
                     <a href="{{ route('all.device') }}" class="nav-link {{ ($route == 'all.device') ? 'active' : '' }}">
                         <i class="fas fa-mobile nav-icon"></i>
-                        <p>Devices</p>
+                        <p>Qurilmalar</p>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('all.employee') }}" class="nav-link {{ ($route == 'all.employee') ? 'active' : '' }}">
                         <i class="fas fa-users nav-icon"></i>
-                        <p>Employees</p>
+                        <p>Hodimlar</p>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('all.purpose') }}" class="nav-link {{ ($route == 'all.purpose') ? 'active' : '' }}">
                         <i class="fas fa-lightbulb nav-icon"></i>
-                        <p>Purposes</p>
+                        <p>Sabablar</p>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('all.attendance') }}" class="nav-link {{ ($route == 'all.attendance') ? 'active' : '' }}">
                         <i class="fas fa-table nav-icon"></i>
-                        <p>Attendances</p>
+                        <p>Davomat</p>
                     </a>
                 </li>
             </ul>
