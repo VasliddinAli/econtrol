@@ -30,15 +30,4 @@ class AttendancesController extends Controller
         );
         return redirect()->route('all.attendance')->with($notification);
     }
-    public function AttendanceBotDelete($id)
-    {
-        $attendace = Attendance::where('id', $id)->first();
-        unlink($attendace->image);
-        $attendace->delete();
-        $notification = array(
-            'message' => 'Davomat muvaffaqiyatli o\'chirildi!',
-            'alert-type' => 'info'
-        );
-        return redirect()->route('bot_view')->with($notification);
-    }
 }

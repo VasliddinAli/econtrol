@@ -74,7 +74,6 @@
                                             <th>Employee_id</th>
                                             <th>Device_id</th>
                                             <th>Purpose_id</th>
-                                            <th>Boshqarish</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -89,9 +88,6 @@
                                             <td>{{ $item->employee_id }}</td>
                                             <td>{{ $item->device_id }}</td>
                                             <td>{{ $item->purpose_id }}</td>
-                                            <td width="10%">
-                                                <a href="{{ route('bot_view.delete', $item->id) }}" class="btn btn-danger" title="O'chirish" id="delete"><i class="fas fa-trash"></i></a>
-                                            </td>
                                         </tr>
                                         @endforeach
                                     </tbody>
