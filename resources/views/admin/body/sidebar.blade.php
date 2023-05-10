@@ -9,7 +9,7 @@ $route = Route::current()->getName();
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="{{ route('dashboard') }}" class="ceo-link">
-        {{-- <img src="{{ asset('backend/dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo" class="ceo-image img-circle elevation-3" style="opacity: .8">--}}
+        <!-- <img src="{{ asset('backend/dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo" class="ceo-image img-circle elevation-3" style="opacity: .8"> -->
         <span class="ceo-text font-weight-light ml-3">E-Controller</span>
     </a>
 

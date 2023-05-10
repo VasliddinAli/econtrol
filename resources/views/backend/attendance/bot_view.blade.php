@@ -53,57 +53,61 @@
             <img class="animation__shake" src="{{ asset('backend/dist/img/logo.png') }}" alt="logo" height="100" width="100">
         </div>
         <!-- Content Wrapper. Contains page content -->
-            <!-- Main content -->
-            <section class="content">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="card">
-                                <!-- <div class="card-header">
+        <!-- Main content -->
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <!-- <div class="card-header">
                         <h3 class="card-title">Categories</h3>
                     </div> -->
-                                <!-- /.card-header -->
-                                <div class="card-body">
-                                    <table id="example1" class="table table-bordered table-striped">
-                                        <thead>
-                                            <tr>
-                                                <th>ID</th>
-                                                <th>Image</th>
-                                                <th>Type</th>
-                                                <th>Date</th>
-                                                <th>Employee_id</th>
-                                                <th>Device_id</th>
-                                                <th>Purpose_id</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach ($attendances as $item)
-                                            <tr>
-                                                <td>{{ $item->id }}</td>
-                                                <td>
-                                                    <img src="{{ asset($item->image) }}" style="width: 100px;">
-                                                </td>
-                                                <td>{{ $item->type }}</td>
-                                                <td>{{ $item->date }}</td>
-                                                <td>{{ $item->employee_id }}</td>
-                                                <td>{{ $item->device_id }}</td>
-                                                <td>{{ $item->purpose_id }}</td>
-                                            </tr>
-                                            @endforeach
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <!-- /.card-body -->
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <table id="example1" class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Image</th>
+                                            <th>Type</th>
+                                            <th>Date</th>
+                                            <th>Employee_id</th>
+                                            <th>Device_id</th>
+                                            <th>Purpose_id</th>
+                                            <th>Boshqarish</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($attendances as $item)
+                                        <tr>
+                                            <td>{{ $item->id }}</td>
+                                            <td>
+                                                <img src="{{ asset($item->image) }}" style="width: 100px;">
+                                            </td>
+                                            <td>{{ $item->type }}</td>
+                                            <td>{{ $item->date }}</td>
+                                            <td>{{ $item->employee_id }}</td>
+                                            <td>{{ $item->device_id }}</td>
+                                            <td>{{ $item->purpose_id }}</td>
+                                            <td width="10%">
+                                                <a href="{{ route('attendance.delete', $item->id) }}" class="btn btn-danger" title="O'chirish" id="delete"><i class="fas fa-trash"></i></a>
+                                            </td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
                             </div>
-                            <!-- /.card -->
+                            <!-- /.card-body -->
                         </div>
-                        <!-- /.col -->
+                        <!-- /.card -->
                     </div>
-                    <!-- /.row -->
+                    <!-- /.col -->
                 </div>
-                <!-- /.container-fluid -->
-            </section>
-            <!-- /.content -->
+                <!-- /.row -->
+            </div>
+            <!-- /.container-fluid -->
+        </section>
+        <!-- /.content -->
 
 
         <!-- /.content-wrapper -->
