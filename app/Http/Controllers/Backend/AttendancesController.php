@@ -18,4 +18,15 @@ class AttendancesController extends Controller
         $attendances = Attendance::get();
         return view('backend.attendance.bot_view', compact('attendances'));
     }
+
+    public function AttendanceDelete($id)
+    {
+        $attendace = Attendance::where('id', $id)->first();
+        $attendace->delete();
+        $notification = array(
+            'message' => 'Davomat muvaffaqiyatli o\'chirildi!',
+            'alert-type' => 'info'
+        );
+        return redirect()->route('all.attendance')->with($notification);
+    }
 }

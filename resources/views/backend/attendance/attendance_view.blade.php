@@ -7,12 +7,12 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Kategoriyalar</h1>
+                <h1>Davomat</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Asosiy</a></li>
-                    <li class="breadcrumb-item active">Kategoriyalar</li>
+                    <li class="breadcrumb-item active">Davomat</li>
                 </ol>
             </div>
         </div>
@@ -23,7 +23,7 @@
 <section class="content">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-8">
+            <div class="col-12">
                 <div class="card">
                     <!-- <div class="card-header">
                         <h3 class="card-title">Categories</h3>
@@ -40,6 +40,7 @@
                                     <th>Employee_id</th>
                                     <th>Device_id</th>
                                     <th>Purpose_id</th>
+                                    <th>Boshqarish</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -54,6 +55,9 @@
                                     <td>{{ $item->employee_id }}</td>
                                     <td>{{ $item->device_id }}</td>
                                     <td>{{ $item->purpose_id }}</td>
+                                    <td width="10%">
+                                        <a href="{{ route('attendance.delete', $item->id) }}" class="btn btn-danger" title="O'chirish" id="delete"><i class="fas fa-trash"></i></a>
+                                    </td>
                                 </tr>
                                 @endforeach
                             </tbody>
