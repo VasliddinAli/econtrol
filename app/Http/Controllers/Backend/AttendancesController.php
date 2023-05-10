@@ -17,7 +17,6 @@ class AttendancesController extends Controller
     public function AttendanceBotView()
     {
         $attendances = Attendance::get();
-        
         return view('backend.attendance.bot_view', compact('attendances'));
     }
 
