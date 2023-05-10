@@ -51,7 +51,6 @@ class ApiEmployeeController extends Controller
         $employee->position = $request->position;
         $employee->status = $request->status;
         $employee->phone = $request->phone;
-        $employee->pin_code = $request->pin_code;
         $employee->save();
         return $this->sendResponse($employee, true, "Employee Updated");
     }

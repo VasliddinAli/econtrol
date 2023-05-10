@@ -107,7 +107,7 @@
                                                             <div class="col-md-6">
                                                                 <div class="form-group">
                                                                     <label>Yangi pin kod</label>
-                                                                    <input type="text" name="pin_code" class="form-control">
+                                                                    <input type="text" name="pin_code" value="{{ $employee->pin_code }}" class="form-control">
                                                                     @error('pin_code')
                                                                     <span class="text-danger">{{ $message }}</span>
                                                                     @enderror

@@ -53,8 +53,6 @@ class EmployeeController extends Controller
             'position' => $request->position,
             'status' => $request->status,
             'phone' => $request->phone,
-            'pin_code' => $pin_code,
-            'qrcode' => "https://api.qrserver.com/v1/create-qr-code/?size=500x500&data=$pin_code",
             'created_at' => Carbon::now()
         ]);
 
@@ -131,20 +129,21 @@ class EmployeeController extends Controller
 
         $employee = Employee::where('id', $employee_id)->first();
         $pin = Employee::where('pin_code', $request->pin_code)->first();
+        $pin_str = str_pad($request->pin_code, 4, "0", STR_PAD_LEFT);
 
         if ($pin == null) {
             $employee->update([
                 'phone' => $request->phone,
-                'pin_code' => str_pad($request->pin_code, 4, "0", STR_PAD_LEFT),
+                'pin_code' => $pin_str,
+                'qrcode' => "https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=$pin_str"
             ]);
         } else {
             $notification = array(
-                'message' => 'Ushbu pin coddan avval foydalanilgan!',
+                'message' => 'Ushbu pin koddan avval foydalanilgan!',
                 'alert-type' => 'warning'
             );
             return redirect()->back()->with($notification);
         }
-
 
         $notification = array(
             'message' => 'Xodim logini muvaffaqiyatli o\'zgartirildi!',
