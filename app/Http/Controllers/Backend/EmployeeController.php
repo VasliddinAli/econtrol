@@ -85,7 +85,6 @@ class EmployeeController extends Controller
             'position' => $request->position,
             'status' => $request->status,
             'phone' => $request->phone,
-            'pin_code' => $request->pin_code,
         ]);
 
         $notification = array(
