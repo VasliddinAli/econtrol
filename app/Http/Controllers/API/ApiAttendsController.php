@@ -65,7 +65,7 @@ class ApiAttendsController extends Controller
         ];
         return $this->sendResponse($response, true, "");
     }
-    
+
     public function addAttendsOffline(Request $request)
     {
         $file = $request->file('image');
@@ -80,6 +80,7 @@ class ApiAttendsController extends Controller
         $attendance->date = $request->date;
         $attendance->employee_id = $request->employee_id;
         $attendance->device_id = $request->device_id;
+        $attendance->purpose_id = $request->purpose_id;
         $attendance->save();
         return $this->sendResponse(null, true, "");
     }
