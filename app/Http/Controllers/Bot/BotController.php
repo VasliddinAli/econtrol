@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Bot;
 
 use App\Http\Controllers\Controller;
+use App\Models\CEO;
 use Illuminate\Support\Facades\Log;
 
 class BotController extends Controller
@@ -61,21 +62,17 @@ class BotController extends Controller
 
         if (isset($message->contact)) {
             $phone = $message->contact->phone_number;
-            // $ceo = CEO::where('phone', $phone)->first();
-            sendResponse('sendMessage', [
-                'chat_id' => $chat_id,
-                'text' => $phone,
-            ]);
+            $ceo = CEO::where('phone', $phone)->first();
 
-            // if ($phone == $ceo->phone) {
-            //     $ceo->update(['bot_id' => $chat_id]);
-            // } else {
-            //     sendResponse('sendMessage', [
-            //         'chat_id' => $chat_id,
-            //         'text' => $phone,
-            //     ]);
-            //     // return;
-            // }
+            if ($phone == $ceo->phone) {
+                $ceo->update(['bot_id' => $chat_id]);
+            } else {
+                sendResponse('sendMessage', [
+                    'chat_id' => $chat_id,
+                    'text' => $phone,
+                ]);
+                // return;
+            }
         }
 
         // function checkAdminChatId($chat_id)
