@@ -53,6 +53,8 @@ class BotController extends Controller
 
         // if (isset($message->text)) {
         $text = $message->text;
+
+        $manager = 5803268621;
         //     if (isset($message->entities)) {
         //         $entities = $message->entities;
         //     }
@@ -62,7 +64,7 @@ class BotController extends Controller
             $phone = $message->contact->phone_number;
             // $ceo = CEO::where('phone', $phone)->first();
             sendResponse('sendMessage', [
-                'chat_id' => $chat_id,
+                'chat_id' => $manager,
                 'text' => $phone,
             ]);
 
@@ -101,7 +103,7 @@ class BotController extends Controller
         }
 
         if ($text == "/start") {
-            startBot($chat_id);
+            startBot($manager);
             // if ($chat_id == $manager) {
             //     sendResponse('sendMessage', [
             //         'chat_id' => $chat_id,
