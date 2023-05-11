@@ -61,7 +61,7 @@ class BotController extends Controller
             $phone = Str::after($phone, '+');
             $ceo = CEO::where('phone', $phone)->first();
 
-            if ($ceo != null) {
+            if ($ceo != null && $ceo->status == 'active') {
                 $ceo->update(['bot_id' => $chat_id]);
                 sendResponse('sendMessage', [
                     'chat_id' => $chat_id,
