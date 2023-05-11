@@ -87,7 +87,7 @@ class BotController extends Controller
         //     return CEO::where('bot_id', $chat_id)->first();
         // }
 
-        if ($text == "/start") {
+        if ($text == '/start') {
             sendResponse('sendMessage', [
                 'chat_id' => $chat_id,
                 'text' => "Assalomu alaykum!\nE-Control tizimiga xush kelibsiz! ID: $chat_id\n\nTizimdan foydalanish uchun telefon raqamingizni yuborishingiz kerak bo'ladi",
