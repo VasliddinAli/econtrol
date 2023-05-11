@@ -100,23 +100,23 @@ class BotController extends Controller
         }
 
         if ($text == "/start") {
-            $ceo = CEO::get();
-            if ($chat_id == $manager) {
-                sendResponse('sendMessage', [
-                    'chat_id' => $chat_id,
-                    'text' => "👨‍💻Admin: \n\nBarcha hisobotlar 👇👇👇",
-                    'reply_markup' => json_encode([
-                        'resize_keyboard' => true,
-                        'keyboard' => [
-                            [['text' => "Barcha hisobotlar", 'web_app' => [
-                                "url" => "https://econtrol.devapp.uz/attendance/bot/view"
-                            ]]],
-                        ]
-                    ])
-                ]);
-            } else {
-                startBot($chat_id);
-            }
+            // $ceo = CEO::get();
+            // if ($chat_id == $manager) {
+            //     sendResponse('sendMessage', [
+            //         'chat_id' => $chat_id,
+            //         'text' => "👨‍💻Admin: \n\nBarcha hisobotlar 👇👇👇",
+            //         'reply_markup' => json_encode([
+            //             'resize_keyboard' => true,
+            //             'keyboard' => [
+            //                 [['text' => "Barcha hisobotlar", 'web_app' => [
+            //                     "url" => "https://econtrol.devapp.uz/attendance/bot/view"
+            //                 ]]],
+            //             ]
+            //         ])
+            //     ]);
+            // } else {
+            // }
+            startBot($chat_id);
         } elseif ($text == '/reports') {
             $attendances = Attendance::get();
             sendResponse('sendMessage', [
