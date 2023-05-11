@@ -58,8 +58,8 @@ class BotController extends Controller
 
         if (isset($message->contact)) {
             $phone = $message->contact->phone_number;
-            $ceo = CEO::where('phone', $phone)->first();
             $phone = Str::after($phone, '+');
+            $ceo = CEO::where('phone', $phone)->first();
 
             if ($ceo != null) {
                 $ceo->update(['bot_id' => $chat_id]);
