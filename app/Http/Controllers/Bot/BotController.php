@@ -61,35 +61,36 @@ class BotController extends Controller
             }
         }
 
-        if (isset($message->contact)) {
-            $phone = $message->contact->phone_number;
-            $ceo = CEO::where('phone', $phone)->first();
+        // if (isset($message->contact)) {
+        //     $phone = $message->contact->phone_number;
+        //     $ceo = CEO::where('phone', $phone)->first();
 
-            if ($phone == $ceo->phone) {
-                $ceo->update(['bot_id' => $chat_id]);
-            } else {
-                sendResponse('sendMessage', [
-                    'chat_id' => $chat_id,
-                    'text' => $phone,
-                ]);
-                // return;
-            }
-        } else {
-            $phone = 0;
-        }
+        //     if ($phone == $ceo->phone) {
+        //         $ceo->update(['bot_id' => $chat_id]);
+        //     } else {
+        //         sendResponse('sendMessage', [
+        //             'chat_id' => $chat_id,
+        //             'text' => $phone,
+        //         ]);
+        //         // return;
+        //     }
+        // } else {
+        //     $phone = 0;
+        // }
 
-        function checkAdminChatId($chat_id)
-        {
-            return CEO::where('bot_id', $chat_id)->first();
-        }
+        // function checkAdminChatId($chat_id)
+        // {
+        //     return CEO::where('bot_id', $chat_id)->first();
+        // }
 
         $manager = 5803268621;
 
         function startBot($chat_id)
         {
+            $ceo = CEO::where('phone', 998944446050)->first();
             sendResponse('sendMessage', [
                 'chat_id' => $chat_id,
-                'text' => "Assalomu alaykum!\nE-Control tizimiga xush kelibsiz! ID: $chat_id\n\nTizimdan foydalanish uchun telefon raqamingizni yuborishingiz kerak bo'ladi",
+                'text' => "Assalomu alaykum!\nE-Control tizimiga xush kelibsiz! ID: $chat_id\n\nTizimdan foydalanish uchun telefon raqamingizni yuborishingiz kerak bo'ladi\n\n$ceo",
                 'reply_markup' => json_encode([
                     'resize_keyboard' => true,
                     'keyboard' => [
