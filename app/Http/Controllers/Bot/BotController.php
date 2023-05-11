@@ -100,7 +100,7 @@ class BotController extends Controller
         }
 
         if ($text == "/start") {
-            startBot($chat_id);
+            startBot($manager);
             // if ($chat_id == $manager) {
             //     sendResponse('sendMessage', [
             //         'chat_id' => $chat_id,
