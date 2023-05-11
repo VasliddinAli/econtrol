@@ -7,6 +7,7 @@ use App\Models\Device;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class DeviceController extends Controller
 {
@@ -32,10 +33,11 @@ class DeviceController extends Controller
             ]
         );
         $password = Hash::make($request->password);
+        $phone = Str::after($request->phone, '+');
 
         Device::insert([
             'name' => $request->name,
-            'phone' => $request->phone,
+            'phone' => $phone,
             'password' => $password,
             'created_at' => Carbon::now()
         ]);
@@ -65,9 +67,10 @@ class DeviceController extends Controller
             ]
         );
         $device = Device::where('id', $device_id)->first();
+        $phone = Str::after($request->phone, '+');
         $device->update([
             'name' => $request->name,
-            'phone' => $request->phone,
+            'phone' => $phone,
         ]);
 
         $notification = array(

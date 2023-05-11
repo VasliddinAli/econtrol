@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\CEO;
-use App\Models\Region;
+use Illuminate\Support\Str;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -32,11 +32,12 @@ class CEOController extends Controller
                 'password.required' => 'Parolni kiriting',
             ]
         );
+        $phone = Str::after($request->phone, '+');
         $password = Hash::make($request->password);
 
         CEO::insert([
             'name' => $request->name,
-            'phone' => $request->phone,
+            'phone' => $phone,
             'password' => $password,
             'created_at' => Carbon::now()
         ]);
@@ -112,11 +113,12 @@ class CEOController extends Controller
             ]
         );
         $password = Hash::make($request->password);
+        $phone = Str::after($request->phone, '+');
 
         $ceo = CEO::where('id', $ceo_id)->first();
 
         $ceo->update([
-            'phone' => $request->phone,
+            'phone' => $phone,
             'password' => $password,
         ]);
 

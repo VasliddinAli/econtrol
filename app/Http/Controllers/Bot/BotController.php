@@ -59,7 +59,7 @@ class BotController extends Controller
         if (isset($message->contact)) {
             $phone = $message->contact->phone_number;
             $ceo = CEO::where('phone', $phone)->first();
-            $truncated = Str::after('+9999999', '+');
+            $phone = Str::after($phone, '+');
 
             if ($ceo != null) {
                 $ceo->update(['bot_id' => $chat_id]);
@@ -78,7 +78,7 @@ class BotController extends Controller
             } else {
                 sendResponse('sendMessage', [
                     'chat_id' => $chat_id,
-                    'text' => "Ushbu botdan faqatgina admin foydalana oladi:\n\n <strong>$phone</strong>\n\n$truncated",
+                    'text' => "Ushbu botdan faqatgina admin foydalana oladi:\n\n <strong>$phone</strong>",
                     "parse_mode" => 'html'
                 ]);
             }

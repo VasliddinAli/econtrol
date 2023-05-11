@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Employee;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class EmployeeController extends Controller
 {
@@ -45,14 +45,13 @@ class EmployeeController extends Controller
             ]
         );
 
-        $pin = $this->checkEmployeePin();
-        $pin_code = str_pad($pin, 4, "0", STR_PAD_LEFT);
+        $phone = Str::after($request->phone, '+');
 
         Employee::create([
             'name' => $request->name,
             'position' => $request->position,
             'status' => $request->status,
-            'phone' => $request->phone,
+            'phone' => $phone,
             'created_at' => Carbon::now()
         ]);
 
@@ -80,11 +79,12 @@ class EmployeeController extends Controller
             ]
         );
         $employee = Employee::where('id', $employee_id)->first();
+        $phone = Str::after($request->phone, '+');
         $employee->update([
             'name' => $request->name,
             'position' => $request->position,
             'status' => $request->status,
-            'phone' => $request->phone,
+            'phone' => $phone,
         ]);
 
         $notification = array(

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Models\Device;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class ApiDeviceController extends Controller
 {
@@ -15,9 +16,10 @@ class ApiDeviceController extends Controller
     }
     public function addDevice(Request $request)
     {
+        $phone = Str::after($request->phone, '+');
         $post = new Device();
         $post->name = $request->name;
-        $post->phone = $request->phone;
+        $post->phone = $phone;
         $post->password = $request->password;
         $post->save();
         return $this->sendResponse($post, true, "Device Created");
@@ -30,8 +32,9 @@ class ApiDeviceController extends Controller
     public function updateDevice(Request $request, $id)
     {
         $post = Device::where('id', $id)->first();
+        $phone = Str::after($request->phone, '+');
         $post->name = $request->name;
-        $post->phone = $request->phone;
+        $post->phone = $phone;
         $post->password = $request->password;
         $post->save();
         return $this->sendResponse($post, true, "Device Updated");

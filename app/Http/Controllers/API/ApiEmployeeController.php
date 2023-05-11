@@ -3,10 +3,9 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\Models\Attendance;
 use App\Models\Employee;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class ApiEmployeeController extends Controller
 {
@@ -28,12 +27,13 @@ class ApiEmployeeController extends Controller
     public function addEmployee(Request $request)
     {
         $employee = new Employee();
+        $phone = Str::after($request->phone, '+');
         $pin = $this->checkEmployeePin();
         $pin_code = str_pad($pin, 4, "0", STR_PAD_LEFT);
         $employee->name = $request->name;
         $employee->position = $request->position;
         $employee->status = $request->status;
-        $employee->phone = $request->phone;
+        $employee->phone = $phone;
         $employee->pin_code = $pin_code;
         $employee->qrcode = "https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=$pin_code";
         $employee->save();
@@ -47,10 +47,11 @@ class ApiEmployeeController extends Controller
     public function updateEmployee(Request $request, $id)
     {
         $employee = Employee::where('id', $id)->first();
+        $phone = Str::after($request->phone, '+');
         $employee->name = $request->name;
         $employee->position = $request->position;
         $employee->status = $request->status;
-        $employee->phone = $request->phone;
+        $employee->phone = $phone;
         $employee->save();
         return $this->sendResponse($employee, true, "Employee Updated");
     }
