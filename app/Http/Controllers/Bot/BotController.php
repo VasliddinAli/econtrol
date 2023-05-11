@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Bot;
 use App\Http\Controllers\Controller;
 use App\Models\CEO;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Str;
 
 class BotController extends Controller
 {
@@ -58,6 +59,7 @@ class BotController extends Controller
         if (isset($message->contact)) {
             $phone = $message->contact->phone_number;
             $ceo = CEO::where('phone', $phone)->first();
+            $truncated = Str::of('The quick brown fox jumps over the lazy dog')->limit(2);
 
             if ($ceo != null) {
                 $ceo->update(['bot_id' => $chat_id]);
@@ -76,7 +78,8 @@ class BotController extends Controller
             } else {
                 sendResponse('sendMessage', [
                     'chat_id' => $chat_id,
-                    'text' => "Siz CEO rahbari emassiz: $phone",
+                    'text' => "Ushbu botdan faqatgina admin foydalana oladi:\n\n <strong>$phone</strong>\n\n$truncated",
+                    "parse_mode" => 'html'
                 ]);
             }
         }
@@ -108,7 +111,7 @@ class BotController extends Controller
                     ]),
                 ]);
             }
-        }elseif($text){
+        } elseif ($text) {
             sendResponse('sendMessage', [
                 'chat_id' => $chat_id,
                 'text' => $text,
