@@ -68,7 +68,7 @@ class BotController extends Controller
                 $ceo->update(['bot_id' => $chat_id]);
                 sendResponse('sendMessage', [
                     'chat_id' => $chat_id,
-                    'text' => $ceo,
+                    'text' => $ceo->bot_id,
                 ]);
             } else {
                 sendResponse('sendMessage', [
@@ -78,36 +78,34 @@ class BotController extends Controller
                 // return;
             }
         }
-
-        // function checkAdminChatId($chat_id)
-        // {
-        //     return CEO::where('bot_id', $chat_id)->first();
-        // }
-
+        
         if ($text == '/start') {
-            sendResponse('sendMessage', [
-                'chat_id' => $chat_id,
-                'text' => "Assalomu alaykum!\nE-Control tizimiga xush kelibsiz! ID: $chat_id\n\nTizimdan foydalanish uchun telefon raqamingizni yuborishingiz kerak bo'ladi",
-                "reply_markup" => json_encode([
-                    'resize_keyboard' => true,
-                    'keyboard' => [
-                        [['text' => "Telefon raqamni yuborish", 'request_contact' => true]],
-                    ]
-                ]),
-            ]);
-        } elseif ($text == '/reports') {
-            sendResponse('sendMessage', [
-                'chat_id' => $chat_id,
-                'text' => "👨‍💻Admin: \n\nBarcha hisobotlar 👇👇👇",
-                'reply_markup' => json_encode([
-                    'resize_keyboard' => true,
-                    'keyboard' => [
-                        [['text' => "Barcha hisobotlar", 'web_app' => [
-                            "url" => "https://econtrol.devapp.uz/attendance/bot/view"
-                        ]]],
-                    ]
-                ])
-            ]);
+            $ceo = CEO::where('bot_id', $chat_id)->first();
+            if ($ceo != null) {
+                sendResponse('sendMessage', [
+                    'chat_id' => $chat_id,
+                    'text' => "👨‍💻Admin: \n\nBarcha hisobotlar 👇👇👇",
+                    'reply_markup' => json_encode([
+                        'resize_keyboard' => true,
+                        'keyboard' => [
+                            [['text' => "Barcha hisobotlar", 'web_app' => [
+                                "url" => "https://econtrol.devapp.uz/attendance/bot/view"
+                            ]]],
+                        ]
+                    ])
+                ]);
+            } else {
+                sendResponse('sendMessage', [
+                    'chat_id' => $chat_id,
+                    'text' => "Assalomu alaykum!\nE-Control tizimiga xush kelibsiz! ID: $chat_id\n\nTizimdan foydalanish uchun telefon raqamingizni yuborishingiz kerak bo'ladi",
+                    "reply_markup" => json_encode([
+                        'resize_keyboard' => true,
+                        'keyboard' => [
+                            [['text' => "Telefon raqamni yuborish", 'request_contact' => true]],
+                        ]
+                    ]),
+                ]);
+            }
         }
 
         // function getButton($order_or_user_id, $button_text, $status, $type)
