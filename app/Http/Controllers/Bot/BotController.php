@@ -58,8 +58,6 @@ class BotController extends Controller
             }
         }
 
-        $manager = 5803268621;
-
         if (isset($message->contact)) {
             $phone = $message->contact->phone_number;
             $ceo = CEO::where('phone', $phone)->first();
@@ -68,23 +66,30 @@ class BotController extends Controller
                 $ceo->update(['bot_id' => $chat_id]);
                 sendResponse('sendMessage', [
                     'chat_id' => $chat_id,
-                    'text' => $ceo->bot_id,
+                    'text' => "👨‍💻 Admin: \n\nBarcha hisobotlar 👇👇👇",
+                    'reply_markup' => json_encode([
+                        'resize_keyboard' => true,
+                        'keyboard' => [
+                            [['text' => "Barcha hisobotlar", 'web_app' => [
+                                "url" => "https://econtrol.devapp.uz/attendance/bot/view"
+                            ]]],
+                        ]
+                    ])
                 ]);
             } else {
                 sendResponse('sendMessage', [
                     'chat_id' => $chat_id,
-                    'text' => $phone,
+                    'text' => "Siz CEO rahbari emassiz: $phone",
                 ]);
-                // return;
             }
         }
-        
+
         if ($text == '/start') {
             $ceo = CEO::where('bot_id', $chat_id)->first();
             if ($ceo != null) {
                 sendResponse('sendMessage', [
                     'chat_id' => $chat_id,
-                    'text' => "👨‍💻Admin: \n\nBarcha hisobotlar 👇👇👇",
+                    'text' => "👨‍💻 Admin: \n\nBarcha hisobotlar 👇👇👇",
                     'reply_markup' => json_encode([
                         'resize_keyboard' => true,
                         'keyboard' => [
