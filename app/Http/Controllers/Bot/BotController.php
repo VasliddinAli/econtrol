@@ -51,14 +51,14 @@ class BotController extends Controller
             $chat_id = $message->chat->id;
         }
 
-        // if (isset($message->text)) {
-        $text = $message->text;
-
+        if (isset($message->text)) {
+            $text = $message->text;
+            if (isset($message->entities)) {
+                $entities = $message->entities;
+            }
+        }
+        
         // $manager = 5803268621;
-        //     if (isset($message->entities)) {
-        //         $entities = $message->entities;
-        //     }
-        // }
 
         if (isset($message->contact)) {
             $phone = $message->contact->phone_number;
