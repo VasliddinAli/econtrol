@@ -63,7 +63,7 @@ class BotController extends Controller
 
             sendResponse('sendMessage', [
                 'chat_id' => $chat_id,
-                'text' => $ceo,
+                'text' => $ceo.'fdsgf',
                 "parse_mode" => 'html'
             ]);
 
