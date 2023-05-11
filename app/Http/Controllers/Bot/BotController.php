@@ -37,22 +37,19 @@ class BotController extends Controller
         if (isset($update->callback_query)) {
             $message = $update->callback_query->message;
             $chat_id = $message->chat->id;
+        } elseif (isset($update->edited_message)) {
+            $message = $update->edited_message;
+            $chat_id = $message->chat->id;
+        } elseif (isset($update->my_chat_member)) {
+            $message = $update->my_chat_member;
+            $chat_id = $message->chat->id;
+        } elseif (isset($update->channel_post)) {
+            $message = $update->channel_post;
+            $chat_id = $message->sender_chat->id;
+        } else {
+            $message = $update->message;
+            $chat_id = $message->chat->id;
         }
-        // elseif (isset($update->edited_message)) {
-        //     $message = $update->edited_message;
-        //     $chat_id = $message->chat->id;
-        // } elseif (isset($update->my_chat_member)) {
-        //     $message = $update->my_chat_member;
-        //     $chat_id = $message->chat->id;
-        // } elseif (isset($update->channel_post)) {
-        //     $message = $update->channel_post;
-        //     $chat_id = $message->sender_chat->id;
-        // } else {
-        //     $message = $update->message;
-        //     $chat_id = $message->chat->id;
-        // }
-
-        $text = "";
 
         // if (isset($message->text)) {
         $text = $message->text;
@@ -61,22 +58,22 @@ class BotController extends Controller
         //     }
         // }
 
-        if (isset($message->contact)) {
-            $phone = $message->contact->phone_number;
-            $ceo = CEO::where('phone', $phone)->first();
+        // if (isset($message->contact)) {
+        //     $phone = $message->contact->phone_number;
+        //     $ceo = CEO::where('phone', $phone)->first();
 
-            if ($phone == $ceo->phone) {
-                $ceo->update(['bot_id' => $chat_id]);
-            } else {
-                sendResponse('sendMessage', [
-                    'chat_id' => $chat_id,
-                    'text' => $phone,
-                ]);
-                // return;
-            }
-        } else {
-            $phone = 0;
-        }
+        //     if ($phone == $ceo->phone) {
+        //         $ceo->update(['bot_id' => $chat_id]);
+        //     } else {
+        //         sendResponse('sendMessage', [
+        //             'chat_id' => $chat_id,
+        //             'text' => $phone,
+        //         ]);
+        //         // return;
+        //     }
+        // } else {
+        //     $phone = 0;
+        // }
 
         // function checkAdminChatId($chat_id)
         // {
@@ -100,7 +97,7 @@ class BotController extends Controller
         }
 
         if ($text == "/start") {
-            startBot($manager);
+            startBot($chat_id);
             // if ($chat_id == $manager) {
             //     sendResponse('sendMessage', [
             //         'chat_id' => $chat_id,
