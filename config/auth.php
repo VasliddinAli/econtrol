@@ -40,9 +40,9 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
-        'admin' => [
+        'c_e_o' => [
             'driver' => 'session',
-            'provider' => 'admins',
+            'provider' => 'c_e_o_s',
         ],
     ],
 
@@ -68,9 +68,9 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
         ],
-        'admins' => [
+        'c_e_o_s' => [
             'driver' => 'eloquent',
-            'model' => App\Models\Admin::class,
+            'model' => App\Models\CEO::class,
         ],
 
         // 'users' => [
@@ -101,8 +101,8 @@ return [
             'expire' => 60,
             'throttle' => 60,
         ],
-        'admins' => [
-            'provider' => 'admins',
+        'c_e_o_s' => [
+            'provider' => 'c_e_o_s',
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,

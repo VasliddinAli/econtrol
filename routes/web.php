@@ -33,15 +33,15 @@ Route::get('/login', function () {
 Route::get('/', [AdminController::class, 'loginForm'])->name('index');
 Route::get('/admin/logout', [AdminController::class, 'destroy'])->name('admin.logout');
 
-Route::group(['middleware' => ['admin:admin']], function () {
+Route::group(['middleware' => ['c_e_o:c_e_o']], function () {
     Route::post('/', [AdminController::class, 'store'])->name('admin.login');
 });
-Route::middleware(['auth:sanctum,admin', 'verified'])
+Route::middleware(['auth:sanctum,c_e_o', 'verified'])
     ->get('/admin/dashboard', [IndexController::class, 'mainPage'])->name('dashboard');
 
 Route::get('attendance/bot/view', [AttendancesController::class, 'AttendanceBotView'])->name('bot_view');
 
-Route::middleware(['auth:admin'])->group(function () {
+Route::middleware(['auth:c_e_o'])->group(function () {
     Route::prefix('ceo')->group(function () {
         Route::get('/view', [CEOController::class, 'ceoView'])->name('all.ceo');
         Route::post('/store', [CEOController::class, 'ceoStore'])->name('ceo.store');

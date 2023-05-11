@@ -30,7 +30,7 @@ class FortifyServiceProvider extends ServiceProvider
             RedirectIfTwoFactorAuthenticatable::class])
             ->needs(StatefulGuard::class)
             ->give(function(){
-                return Auth::guard('admin');
+                return Auth::guard('c_e_o');
             });
     }
 
@@ -47,7 +47,7 @@ class FortifyServiceProvider extends ServiceProvider
         Fortify::resetUserPasswordsUsing(ResetUserPassword::class);
 
         RateLimiter::for('login', function (Request $request) {
-            return Limit::perMinute(5)->by($request->email.$request->ip());
+            return Limit::perMinute(5)->by($request->phone.$request->ip());
         });
 
         RateLimiter::for('two-factor', function (Request $request) {

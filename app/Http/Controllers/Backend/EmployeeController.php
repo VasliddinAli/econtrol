@@ -45,6 +45,8 @@ class EmployeeController extends Controller
             ]
         );
 
+        $pin = $this->checkEmployeePin();
+        $pin_code = str_pad($pin, 4, "0", STR_PAD_LEFT);
         $phone = Str::after($request->phone, '+');
 
         Employee::create([
@@ -52,6 +54,8 @@ class EmployeeController extends Controller
             'position' => $request->position,
             'status' => $request->status,
             'phone' => $phone,
+            'pin_code' => $pin_code,
+            'qrcode' => "https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=$pin_code",
             'created_at' => Carbon::now()
         ]);
 
