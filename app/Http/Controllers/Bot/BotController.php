@@ -86,7 +86,7 @@ class BotController extends Controller
 
         if ($text == '/start') {
             $ceo = CEO::where('bot_id', $chat_id)->first();
-            if ($ceo != null) {
+            if ($ceo != null && $ceo->status == 'active') {
                 sendResponse('sendMessage', [
                     'chat_id' => $chat_id,
                     'text' => "👨‍💻 Admin: \n\nBarcha hisobotlar 👇👇👇",
