@@ -91,12 +91,12 @@ class BotController extends Controller
             sendResponse('sendMessage', [
                 'chat_id' => $chat_id,
                 'text' => "Assalomu alaykum!\nE-Control tizimiga xush kelibsiz! ID: $chat_id\n\nTizimdan foydalanish uchun telefon raqamingizni yuborishingiz kerak bo'ladi",
-                "reply_markup" => json_encode([
-                    'resize_keyboard' => true,
-                    'keyboard' => [
-                        [['text' => "Telefon raqamni yuborish", 'request_contact' => true]],
-                    ]
-                ]),
+                // "reply_markup" => json_encode([
+                //     'resize_keyboard' => true,
+                //     'keyboard' => [
+                //         [['text' => "Telefon raqamni yuborish", 'request_contact' => true]],
+                //     ]
+                // ]),
             ]);
         }
 
