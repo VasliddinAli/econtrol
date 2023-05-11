@@ -41,6 +41,7 @@ Route::prefix('employee')->group(function () {
 Route::prefix('attendance')->group(function () {
     Route::get('list', [ApiAttendsController::class, 'getAttendance']);
     Route::post('add', [ApiAttendsController::class, 'addAttends']);
+    Route::post('add/offline', [ApiAttendsController::class, 'addAttendsOffline']);
     Route::post('late/purpose', [ApiAttendsController::class, 'forLatePurpose']);
 });
 Route::prefix('purpose')->group(function () {
