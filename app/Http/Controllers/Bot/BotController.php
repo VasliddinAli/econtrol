@@ -63,8 +63,7 @@ class BotController extends Controller
 
             sendResponse('sendMessage', [
                 'chat_id' => $chat_id,
-                // 'text' => "Ushbu botdan faqatgina admin foydalana oladi:\n\n <strong>$ceo->phone</strong>",
-                'text' => $ceo,
+                'text' => "Ushbu botdan faqatgina admin foydalana oladi:\n\n <strong>$ceo->phone</strong>",
                 "parse_mode" => 'html'
             ]);
 
@@ -95,29 +94,29 @@ class BotController extends Controller
         if ($text == '/start') {
             // $ceo = CEO::where('bot_id', $chat_id)->first();
             // if ($ceo != null) {
-            sendResponse('sendMessage', [
-                'chat_id' => $chat_id,
-                'text' => "👨‍💻 Admin: \n\nBarcha hisobotlar 👇👇👇",
-                'reply_markup' => json_encode([
-                    'resize_keyboard' => true,
-                    'keyboard' => [
-                        [['text' => "Barcha hisobotlar", 'web_app' => [
-                            "url" => "https://econtrol.devapp.uz/attendance/bot/view"
-                        ]]],
-                    ]
-                ])
-            ]);
-            // } else {
             //     sendResponse('sendMessage', [
             //         'chat_id' => $chat_id,
-            //         'text' => "Assalomu alaykum!\nE-Control tizimiga xush kelibsiz! ID: $chat_id\n\nTizimdan foydalanish uchun telefon raqamingizni yuborishingiz kerak bo'ladi",
-            //         "reply_markup" => json_encode([
+            //         'text' => "👨‍💻 Admin: \n\nBarcha hisobotlar 👇👇👇",
+            //         'reply_markup' => json_encode([
             //             'resize_keyboard' => true,
             //             'keyboard' => [
-            //                 [['text' => "Telefon raqamni yuborish", 'request_contact' => true]],
+            //                 [['text' => "Barcha hisobotlar", 'web_app' => [
+            //                     "url" => "https://econtrol.devapp.uz/attendance/bot/view"
+            //                 ]]],
             //             ]
-            //         ]),
+            //         ])
             //     ]);
+            // } else {
+            sendResponse('sendMessage', [
+                'chat_id' => $chat_id,
+                'text' => "Assalomu alaykum!\nE-Control tizimiga xush kelibsiz! ID: $chat_id\n\nTizimdan foydalanish uchun telefon raqamingizni yuborishingiz kerak bo'ladi",
+                "reply_markup" => json_encode([
+                    'resize_keyboard' => true,
+                    'keyboard' => [
+                        [['text' => "Telefon raqamni yuborish", 'request_contact' => true]],
+                    ]
+                ]),
+            ]);
             // }
         } elseif ($text) {
             sendResponse('sendMessage', [
