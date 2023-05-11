@@ -32,6 +32,7 @@ class BotController extends Controller
         $update = json_decode($update, false);
 
         $message = "";
+        $text = "";
         if (isset($update->callback_query)) {
             $message = $update->callback_query->message;
             $chat_id = $message->chat->id;
