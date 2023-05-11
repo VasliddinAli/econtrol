@@ -61,7 +61,7 @@ class BotController extends Controller
             $ceo = CEO::where('phone', $phone)->first();
             $phone = Str::after($phone, '+');
 
-            if ($ceo->phone == $phone) {
+            if ($ceo != null) {
                 $ceo->update(['bot_id' => $chat_id]);
                 sendResponse('sendMessage', [
                     'chat_id' => $chat_id,
@@ -78,7 +78,7 @@ class BotController extends Controller
             } else {
                 sendResponse('sendMessage', [
                     'chat_id' => $chat_id,
-                    'text' => "Ushbu botdan faqatgina admin foydalana oladi:\n\n <strong>$phone</strong>",
+                    'text' => "Ushbu botdan faqatgina admin foydalana oladi:\n\n <strong>$ceo->phone</strong>",
                     "parse_mode" => 'html'
                 ]);
             }
