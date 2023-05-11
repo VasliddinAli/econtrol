@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Bot;
 
 use App\Http\Controllers\Controller;
 use App\Models\Attendance;
+use App\Models\CEO;
 use Illuminate\Support\Facades\Log;
 
 class BotController extends Controller
@@ -36,19 +37,20 @@ class BotController extends Controller
         if (isset($update->callback_query)) {
             $message = $update->callback_query->message;
             $chat_id = $message->chat->id;
-        } elseif (isset($update->edited_message)) {
-            $message = $update->edited_message;
-            $chat_id = $message->chat->id;
-        } elseif (isset($update->my_chat_member)) {
-            $message = $update->my_chat_member;
-            $chat_id = $message->chat->id;
-        } elseif (isset($update->channel_post)) {
-            $message = $update->channel_post;
-            $chat_id = $message->sender_chat->id;
-        } else {
-            $message = $update->message;
-            $chat_id = $message->chat->id;
         }
+        // elseif (isset($update->edited_message)) {
+        //     $message = $update->edited_message;
+        //     $chat_id = $message->chat->id;
+        // } elseif (isset($update->my_chat_member)) {
+        //     $message = $update->my_chat_member;
+        //     $chat_id = $message->chat->id;
+        // } elseif (isset($update->channel_post)) {
+        //     $message = $update->channel_post;
+        //     $chat_id = $message->sender_chat->id;
+        // } else {
+        //     $message = $update->message;
+        //     $chat_id = $message->chat->id;
+        // }
 
         $text = "";
 
@@ -59,24 +61,27 @@ class BotController extends Controller
             }
         }
 
-        // if (isset($message->contact)) {
-        //     if ($chat_id == $message->contact->user_id) {
-        //         $phone = $message->contact->phone_number;
-        //     } else {
-        //         sendResponse('sendMessage', [
-        //             'chat_id' => $chat_id,
-        //             'text' => '👨‍💻Operator mavjud emas!',
-        //         ]);
-        //         return;
-        //     }
-        // } else {
-        //     $phone = 0;
-        // }
+        if (isset($message->contact)) {
+            $phone = $message->contact->phone_number;
+            $ceo = CEO::where('phone', $phone)->first();
 
-        // function checkAdminChatId($chat_id)
-        // {
-        //     return Admin::where('bot_chat_id', $chat_id)->first();
-        // }
+            if ($phone == $ceo->phone) {
+                $ceo->update(['bot_id' => $chat_id]);
+            } else {
+                sendResponse('sendMessage', [
+                    'chat_id' => $chat_id,
+                    'text' => $phone,
+                ]);
+                // return;
+            }
+        } else {
+            $phone = 0;
+        }
+
+        function checkAdminChatId($chat_id)
+        {
+            return CEO::where('bot_id', $chat_id)->first();
+        }
 
         $manager = 5803268621;
 
@@ -84,11 +89,18 @@ class BotController extends Controller
         {
             sendResponse('sendMessage', [
                 'chat_id' => $chat_id,
-                'text' => "Assalomu alaykum!\nE-Control tizimiga xush kelibsiz! ID: $chat_id",
+                'text' => "Assalomu alaykum!\nE-Control tizimiga xush kelibsiz! ID: $chat_id\n\nTizimdan foydalanish uchun telefon raqamingizni yuborishingiz kerak bo'ladi",
+                'reply_markup' => json_encode([
+                    'resize_keyboard' => true,
+                    'keyboard' => [
+                        [['text' => "Telefon raqamni yuborish"]],
+                    ]
+                ])
             ]);
         }
 
         if ($text == "/start") {
+            $ceo = CEO::get();
             if ($chat_id == $manager) {
                 sendResponse('sendMessage', [
                     'chat_id' => $chat_id,

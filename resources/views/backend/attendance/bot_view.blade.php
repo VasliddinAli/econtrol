@@ -87,7 +87,7 @@
                                             <td>{{ $item->date }}</td>
                                             <td>{{ $item->employee->name }}</td>
                                             <td>{{ $item->device->name }}</td>
-                                            <td>{{ $item->purpose->purpose }}</td>
+                                            <td>{{ $item->purpose_id == null ? "" : $item->purpose->purpose }}</td>
                                         </tr>
                                         @endforeach
                                     </tbody>
