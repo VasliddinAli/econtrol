@@ -63,32 +63,31 @@ class BotController extends Controller
 
             sendResponse('sendMessage', [
                 'chat_id' => $chat_id,
-                'text' => $ceo.'fdsgf',
+                'text' => $ceo,
                 "parse_mode" => 'html'
             ]);
 
-
-            // if ($ceo != null) {
-            //     $ceo->update(['bot_id' => $chat_id]);
-            //     sendResponse('sendMessage', [
-            //         'chat_id' => $chat_id,
-            //         'text' => "👨‍💻 Admin: \n\nBarcha hisobotlar 👇👇👇",
-            //         'reply_markup' => json_encode([
-            //             'resize_keyboard' => true,
-            //             'keyboard' => [
-            //                 [['text' => "Barcha hisobotlar", 'web_app' => [
-            //                     "url" => "https://econtrol.devapp.uz/attendance/bot/view"
-            //                 ]]],
-            //             ]
-            //         ])
-            //     ]);
-            // } else {
-            //     sendResponse('sendMessage', [
-            //         'chat_id' => $chat_id,
-            //         'text' => "Ushbu botdan faqatgina admin foydalana oladi:\n\n <strong>$ceo->phone</strong>",
-            //         "parse_mode" => 'html'
-            //     ]);
-            // }
+            if ($ceo != null) {
+                $ceo->update(['bot_id' => $chat_id]);
+                sendResponse('sendMessage', [
+                    'chat_id' => $chat_id,
+                    'text' => "👨‍💻 Admin: \n\nBarcha hisobotlar 👇👇👇",
+                    'reply_markup' => json_encode([
+                        'resize_keyboard' => true,
+                        'keyboard' => [
+                            [['text' => "Barcha hisobotlar", 'web_app' => [
+                                "url" => "https://econtrol.devapp.uz/attendance/bot/view"
+                            ]]],
+                        ]
+                    ])
+                ]);
+            } else {
+                sendResponse('sendMessage', [
+                    'chat_id' => $chat_id,
+                    'text' => "Ushbu botdan faqatgina admin foydalana oladi:\n\n <strong>$phone</strong>",
+                    "parse_mode" => 'html'
+                ]);
+            }
         }
 
         if ($text == '/start') {
