@@ -102,7 +102,6 @@ class CEOController extends Controller
 
     public function ceoUpdateLogin(Request $request, $ceo_id)
     {
-
         $request->validate(
             [
                 'phone' => 'required',

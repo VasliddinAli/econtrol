@@ -67,7 +67,7 @@
                         <ul class="nav nav-pills">
                             <li class="nav-item">
                                 <a class="nav-link active" href="#secton1" data-toggle="tab">
-                                    Loginni almashtirish
+                                    Parolni almashtirish
                                 </a>
                             </li>
                         </ul>
