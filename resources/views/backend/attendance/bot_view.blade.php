@@ -69,9 +69,9 @@
                                         <tr>
                                             <th>ID</th>
                                             <th>Rasmi</th>
+                                            <th>Hodim</th>
                                             <th>Holati</th>
                                             <th>Vaqti</th>
-                                            <th>Hodim</th>
                                             <th>Qurilma</th>
                                             <th>Sabab</th>
                                         </tr>
@@ -83,9 +83,9 @@
                                             <td>
                                                 <img src="{{ asset($item->image) }}" style="width: 100px;">
                                             </td>
+                                            <td>{{ $item->employee->name }}</td>
                                             <td>{{ $item->type }}</td>
                                             <td>{{ $item->date }}</td>
-                                            <td>{{ $item->employee->name }}</td>
                                             <td>{{ $item->device->name }}</td>
                                             <td>{{ $item->purpose_id == null ? "" : $item->purpose->purpose }}</td>
                                         </tr>
