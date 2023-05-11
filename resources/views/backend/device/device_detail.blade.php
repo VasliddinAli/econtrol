@@ -12,13 +12,13 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Device</h1>
+                <h1>Qurilma</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Asosiy</a></li>
-                    <li class="breadcrumb-item"><a href="{{ route('all.device') }}">Device</a></li>
-                    <li class="breadcrumb-item active">Device</li>
+                    <li class="breadcrumb-item"><a href="{{ route('all.device') }}">Qurilma</a></li>
+                    <li class="breadcrumb-item active">Qurilma</li>
                 </ol>
             </div>
         </div>
@@ -35,7 +35,7 @@
                 <!-- Profile Image -->
                 <div class="card card-primary">
                     <div class="card-header">
-                        <h3 class="card-title">Device haqida</h3>
+                        <h3 class="card-title">Qurilma haqida</h3>
                     </div>
                     <div class="card-body box-profile">
 
@@ -66,7 +66,7 @@
                         <ul class="nav nav-pills">
                             <li class="nav-item">
                                 <a class="nav-link active" href="#secton1" data-toggle="tab">
-                                    Loginni almashtirish
+                                    Parolni almashtirish
                                 </a>
                             </li>
                         </ul>

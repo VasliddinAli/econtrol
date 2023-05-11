@@ -8,12 +8,12 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Employee</h1>
+                <h1>Hodimlar</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Asosiy</a></li>
-                    <li class="breadcrumb-item active">Employee</li>
+                    <li class="breadcrumb-item active">Hodimlar</li>
                 </ol>
             </div>
         </div>
@@ -35,8 +35,8 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>Nomi</th>
+                                    <th>Yo'nalishi</th>
                                     <th>Holati</th>
-                                    <th>Status</th>
                                     <th>Telefon</th>
                                     <th>Pin kod</th>
                                     <th>Boshqarish</th>
@@ -70,7 +70,7 @@
                 <!-- general form elements -->
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Employee qo'shish</h3>
+                        <h3 class="card-title">Hodim qo'shish</h3>
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
@@ -88,14 +88,14 @@
                                             @enderror
                                         </div>
                                         <div class="form-group">
-                                            <label>Position</label>
+                                            <label>Yo'nalishi</label>
                                             <input type="text" name="position" class="form-control">
                                             @error('position')
                                             <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
                                         <div class="form-group">
-                                            <label>Status</label>
+                                            <label>Holati</label>
                                             <select class="form-control" name="status" aria-label="Default select example">
                                                 <option selected value="active">Faol</option>
                                                 <option value="inactive">Nofaol</option>

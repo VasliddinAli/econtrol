@@ -12,13 +12,13 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Employee</h1>
+                <h1>Hodim</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Asosiy</a></li>
-                    <li class="breadcrumb-item"><a href="{{ route('all.employee') }}">Employee</a></li>
-                    <li class="breadcrumb-item active">Employee</li>
+                    <li class="breadcrumb-item"><a href="{{ route('all.employee') }}">Hodim</a></li>
+                    <li class="breadcrumb-item active">Hodim</li>
                 </ol>
             </div>
         </div>
@@ -35,7 +35,7 @@
                 <!-- Profile Image -->
                 <div class="card card-primary">
                     <div class="card-header">
-                        <h3 class="card-title">Employee haqida</h3>
+                        <h3 class="card-title">Hodim haqida</h3>
                     </div>
                     <div class="card-body box-profile">
 
@@ -47,11 +47,11 @@
                                     }}</a>
                             </li>
                             <li class="list-group-item">
-                                <b><i class="fas fa-user mr-1"></i>Nomi :</b> <a class="float-right">{{
+                                <b><i class="fas fa-user mr-1"></i>Ismi :</b> <a class="float-right">{{
                                     $employee->name }}</a>
                             </li>
                             <li class="list-group-item">
-                                <b><i class="fas fa-layer-group"></i>Statusi :</b> <a class="float-right">{{
+                                <b><i class="fas fa-layer-group"></i> Holati :</b> <a class="float-right">{{
                                     $employee->status }}</a>
                             </li>
                             <li class="list-group-item">

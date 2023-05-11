@@ -6,13 +6,13 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Employee o'zgartirish</h1>
+                <h1>Hodim o'zgartirish</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Asosiy</a></li>
-                    <li class="breadcrumb-item"><a href="{{ route('all.employee') }}">Employee</a></li>
-                    <li class="breadcrumb-item active">Employee o'zgartirish</li>
+                    <li class="breadcrumb-item"><a href="{{ route('all.employee') }}">Hodim</a></li>
+                    <li class="breadcrumb-item active">Hodim o'zgartirish</li>
                 </ol>
             </div>
         </div>
@@ -35,21 +35,21 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label>Nomi</label>
+                                            <label>F.I.O</label>
                                             <input type="text" name="name" value="{{ $employee->name }}" class="form-control">
                                             @error('name')
                                             <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
                                         <div class="form-group">
-                                            <label>Position</label>
+                                            <label>Yo'nalishi</label>
                                             <input type="text" name="position" value="{{ $employee->position }}" class="form-control">
                                             @error('position')
                                             <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
                                         <div class="form-group">
-                                            <label>Status</label>
+                                            <label>Holati</label>
                                             <select class="form-control" name="status" aria-label="Default select example">
                                                 <option value="{{ $employee->status }}" selected>Default</option>
                                                 <option value="Faol">Faol</option>
@@ -60,7 +60,7 @@
                                             @enderror
                                         </div>
                                         <div class="form-group">
-                                            <label>Telefon</label>
+                                            <label>Telefon nomer</label>
                                             <input type="tel" name="phone" value="{{ $employee->phone }}" class="form-control">
                                             @error('phone')
                                             <span class="text-danger">{{ $message }}</span>

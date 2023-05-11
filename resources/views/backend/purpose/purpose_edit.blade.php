@@ -6,13 +6,13 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Purpose o'zgartirish</h1>
+                <h1>Sabab o'zgartirish</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Asosiy</a></li>
-                    <li class="breadcrumb-item"><a href="{{ route('all.purpose') }}">Purpose</a></li>
-                    <li class="breadcrumb-item active">Purpose o'zgartirish</li>
+                    <li class="breadcrumb-item"><a href="{{ route('all.purpose') }}">Sabab</a></li>
+                    <li class="breadcrumb-item active">Sabab o'zgartirish</li>
                 </ol>
             </div>
         </div>
