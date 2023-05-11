@@ -3,8 +3,6 @@
 namespace App\Http\Controllers\Bot;
 
 use App\Http\Controllers\Controller;
-use App\Models\Attendance;
-use App\Models\CEO;
 use Illuminate\Support\Facades\Log;
 
 class BotController extends Controller
@@ -57,8 +55,8 @@ class BotController extends Controller
                 $entities = $message->entities;
             }
         }
-        
-        // $manager = 5803268621;
+
+        $manager = 5803268621;
 
         if (isset($message->contact)) {
             $phone = $message->contact->phone_number;
@@ -86,10 +84,7 @@ class BotController extends Controller
         //     return CEO::where('bot_id', $chat_id)->first();
         // }
 
-        $manager = 5803268621;
-
-        function startBot($chat_id)
-        {
+        if ($text == "/start") {
             sendResponse('sendMessage', [
                 'chat_id' => $chat_id,
                 'text' => "Assalomu alaykum!\nE-Control tizimiga xush kelibsiz! ID: $chat_id\n\nTizimdan foydalanish uchun telefon raqamingizni yuborishingiz kerak bo'ladi",
@@ -100,31 +95,18 @@ class BotController extends Controller
                     ]
                 ]),
             ]);
-        }
-
-        if ($text == "/start") {
-            startBot($chat_id);
-            // if ($chat_id == $manager) {
-            //     sendResponse('sendMessage', [
-            //         'chat_id' => $chat_id,
-            //         'text' => "👨‍💻Admin: \n\nBarcha hisobotlar 👇👇👇",
-            //         'reply_markup' => json_encode([
-            //             'resize_keyboard' => true,
-            //             'keyboard' => [
-            //                 [['text' => "Barcha hisobotlar", 'web_app' => [
-            //                     "url" => "https://econtrol.devapp.uz/attendance/bot/view"
-            //                 ]]],
-            //             ]
-            //         ])
-            //     ]);
-            // } else {
-            //     startBot($chat_id);
-            // }
         } elseif ($text == '/reports') {
-            $attendances = Attendance::get();
             sendResponse('sendMessage', [
                 'chat_id' => $chat_id,
-                'text' => $attendances
+                'text' => "👨‍💻Admin: \n\nBarcha hisobotlar 👇👇👇",
+                'reply_markup' => json_encode([
+                    'resize_keyboard' => true,
+                    'keyboard' => [
+                        [['text' => "Barcha hisobotlar", 'web_app' => [
+                            "url" => "https://econtrol.devapp.uz/attendance/bot/view"
+                        ]]],
+                    ]
+                ])
             ]);
         }
 
