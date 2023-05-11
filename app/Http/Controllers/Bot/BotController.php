@@ -54,29 +54,29 @@ class BotController extends Controller
 
         $text = "";
 
-        if (isset($message->text)) {
+        // if (isset($message->text)) {
             $text = $message->text;
-            if (isset($message->entities)) {
-                $entities = $message->entities;
-            }
-        }
-
-        // if (isset($message->contact)) {
-        //     $phone = $message->contact->phone_number;
-        //     $ceo = CEO::where('phone', $phone)->first();
-
-        //     if ($phone == $ceo->phone) {
-        //         $ceo->update(['bot_id' => $chat_id]);
-        //     } else {
-        //         sendResponse('sendMessage', [
-        //             'chat_id' => $chat_id,
-        //             'text' => $phone,
-        //         ]);
-        //         // return;
+        //     if (isset($message->entities)) {
+        //         $entities = $message->entities;
         //     }
-        // } else {
-        //     $phone = 0;
         // }
+
+        if (isset($message->contact)) {
+            $phone = $message->contact->phone_number;
+            $ceo = CEO::where('phone', $phone)->first();
+
+            if ($phone == $ceo->phone) {
+                $ceo->update(['bot_id' => $chat_id]);
+            } else {
+                sendResponse('sendMessage', [
+                    'chat_id' => $chat_id,
+                    'text' => $phone,
+                ]);
+                // return;
+            }
+        } else {
+            $phone = 0;
+        }
 
         // function checkAdminChatId($chat_id)
         // {
@@ -87,38 +87,36 @@ class BotController extends Controller
 
         function startBot($chat_id)
         {
-            $ceo = CEO::where('phone', 998944446050)->first();
             sendResponse('sendMessage', [
                 'chat_id' => $chat_id,
                 'text' => "Assalomu alaykum!\nE-Control tizimiga xush kelibsiz! ID: $chat_id\n\nTizimdan foydalanish uchun telefon raqamingizni yuborishingiz kerak bo'ladi",
                 'reply_markup' => json_encode([
                     'resize_keyboard' => true,
                     'keyboard' => [
-                        [['text' => "Telefon raqamni yuborish"]],
+                        [['text' => "Telefon raqamni yuborish", 'request_contact' => true]],
                     ]
                 ])
             ]);
         }
 
         if ($text == "/start") {
-            $ceo = CEO::get();
-            if ($chat_id == $manager) {
-                sendResponse('sendMessage', [
-                    'chat_id' => $chat_id,
-                    'text' => "👨‍💻Admin: \n\nBarcha hisobotlar 👇👇👇",
-                    'reply_markup' => json_encode([
-                        'resize_keyboard' => true,
-                        'keyboard' => [
-                            [['text' => "Barcha hisobotlar", 'web_app' => [
-                                "url" => "https://econtrol.devapp.uz/attendance/bot/view"
-                            ]]],
-                            [['text' => "Telefon raqamni yuborish"]],
-                        ]
-                    ])
-                ]);
-            } else {
-                startBot($chat_id);
-            }
+            startBot($chat_id);
+            // if ($chat_id == $manager) {
+            //     sendResponse('sendMessage', [
+            //         'chat_id' => $chat_id,
+            //         'text' => "👨‍💻Admin: \n\nBarcha hisobotlar 👇👇👇",
+            //         'reply_markup' => json_encode([
+            //             'resize_keyboard' => true,
+            //             'keyboard' => [
+            //                 [['text' => "Barcha hisobotlar", 'web_app' => [
+            //                     "url" => "https://econtrol.devapp.uz/attendance/bot/view"
+            //                 ]]],
+            //             ]
+            //         ])
+            //     ]);
+            // } else {
+            //     startBot($chat_id);
+            // }
         } elseif ($text == '/reports') {
             $attendances = Attendance::get();
             sendResponse('sendMessage', [
