@@ -59,7 +59,7 @@ class BotController extends Controller
         if (isset($message->contact)) {
             $phone = $message->contact->phone_number;
             $ceo = CEO::where('phone', $phone)->first();
-            $truncated = Str::before('This is my name', 'my name');
+            $truncated = Str::after('+9999999', '+');
 
             if ($ceo != null) {
                 $ceo->update(['bot_id' => $chat_id]);
