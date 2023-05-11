@@ -63,7 +63,7 @@ class BotController extends Controller
 
             sendResponse('sendMessage', [
                 'chat_id' => $chat_id,
-                'text' => "Ushbu botdan faqatgina admin foydalana oladi:\n\n <strong>$ceo->phone</strong>",
+                'text' => $ceo,
                 "parse_mode" => 'html'
             ]);
 
