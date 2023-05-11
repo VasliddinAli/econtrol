@@ -53,9 +53,6 @@ class BotController extends Controller
 
         if (isset($message->text)) {
             $text = $message->text;
-            if (isset($message->entities)) {
-                $entities = $message->entities;
-            }
         }
 
         if (isset($message->contact)) {
@@ -111,6 +108,11 @@ class BotController extends Controller
                     ]),
                 ]);
             }
+        }elseif($text){
+            sendResponse('sendMessage', [
+                'chat_id' => $chat_id,
+                'text' => $text,
+            ]);
         }
 
         // function getButton($order_or_user_id, $button_text, $status, $type)
