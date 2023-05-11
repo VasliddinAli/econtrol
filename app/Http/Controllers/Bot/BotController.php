@@ -76,7 +76,10 @@ class BotController extends Controller
             //     // return;
             // }
         } else {
-            $phone = 0;
+            sendResponse('sendMessage', [
+                'chat_id' => $chat_id,
+                'text' => 'PHONE',
+            ]);
         }
 
         // function checkAdminChatId($chat_id)
