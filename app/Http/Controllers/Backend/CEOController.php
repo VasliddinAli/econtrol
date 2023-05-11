@@ -67,9 +67,10 @@ class CEOController extends Controller
             ]
         );
         $ceo = CEO::where('id', $ceo_id)->first();
+        $phone = Str::after($request->phone, '+');
         $ceo->update([
             'name' => $request->name,
-            'phone' => $request->phone,
+            'phone' => $phone,
         ]);
 
         $notification = array(
