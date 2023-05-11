@@ -90,7 +90,7 @@ class BotController extends Controller
             $ceo = CEO::where('phone', 998944446050)->first();
             sendResponse('sendMessage', [
                 'chat_id' => $chat_id,
-                'text' => "Assalomu alaykum!\nE-Control tizimiga xush kelibsiz! ID: $chat_id\n\nTizimdan foydalanish uchun telefon raqamingizni yuborishingiz kerak bo'ladi\n\n$ceo",
+                'text' => "Assalomu alaykum!\nE-Control tizimiga xush kelibsiz! ID: $chat_id\n\nTizimdan foydalanish uchun telefon raqamingizni yuborishingiz kerak bo'ladi",
                 'reply_markup' => json_encode([
                     'resize_keyboard' => true,
                     'keyboard' => [
@@ -101,33 +101,24 @@ class BotController extends Controller
         }
 
         if ($text == "/start") {
-            // $ceo = CEO::get();
-            // if ($chat_id == $manager) {
-            //     sendResponse('sendMessage', [
-            //         'chat_id' => $chat_id,
-            //         'text' => "👨‍💻Admin: \n\nBarcha hisobotlar 👇👇👇",
-            //         'reply_markup' => json_encode([
-            //             'resize_keyboard' => true,
-            //             'keyboard' => [
-            //                 [['text' => "Barcha hisobotlar", 'web_app' => [
-            //                     "url" => "https://econtrol.devapp.uz/attendance/bot/view"
-            //                 ]]],
-            //             ]
-            //         ])
-            //     ]);
-            // } else {
-            // }
-            $ceo = CEO::where('phone', 998944446050)->first();
-            sendResponse('sendMessage', [
-                'chat_id' => $chat_id,
-                'text' => "Assalomu alaykum!\nE-Control tizimiga xush kelibsiz! ID: $chat_id\n\nTizimdan foydalanish uchun telefon raqamingizni yuborishingiz kerak bo'ladi\n\n$ceo",
-                // 'reply_markup' => json_encode([
-                //     'resize_keyboard' => true,
-                //     'keyboard' => [
-                //         [['text' => "Telefon raqamni yuborish"]],
-                //     ]
-                // ])
-            ]);
+            $ceo = CEO::get();
+            if ($chat_id == $manager) {
+                sendResponse('sendMessage', [
+                    'chat_id' => $chat_id,
+                    'text' => "👨‍💻Admin: \n\nBarcha hisobotlar 👇👇👇",
+                    'reply_markup' => json_encode([
+                        'resize_keyboard' => true,
+                        'keyboard' => [
+                            [['text' => "Barcha hisobotlar", 'web_app' => [
+                                "url" => "https://econtrol.devapp.uz/attendance/bot/view"
+                            ]]],
+                            [['text' => "Telefon raqamni yuborish"]],
+                        ]
+                    ])
+                ]);
+            } else {
+                startBot($chat_id);
+            }
         } elseif ($text == '/reports') {
             $attendances = Attendance::get();
             sendResponse('sendMessage', [
