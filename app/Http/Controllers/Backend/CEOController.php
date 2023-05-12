@@ -46,7 +46,7 @@ class CEOController extends Controller
             'message' => 'CEO muvaffaqiyatli qo\'shildi!',
             'alert-type' => 'success'
         );
-        return redirect()->back()->with($notification);
+        return redirect()->route('all.ceo')->with($notification);
     }
 
     public function ceoEdit($ceo_id)
@@ -57,7 +57,6 @@ class CEOController extends Controller
 
     public function ceoUpdate(Request $request, $ceo_id)
     {
-
         $request->validate(
             [
                 'name' => 'required',
@@ -126,6 +125,6 @@ class CEOController extends Controller
             'message' => 'CEO logini muvaffaqiyatli o\'zgartirildi!',
             'alert-type' => 'success'
         );
-        return redirect()->back()->with($notification);
+        return redirect()->route('all.ceo')->with($notification);
     }
 }

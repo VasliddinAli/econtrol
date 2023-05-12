@@ -26,7 +26,7 @@ class DeviceController extends Controller
                 'password' => 'required',
             ],
             [
-                'name.required' => 'Device nomini kiriting',
+                'name.required' => 'Qurilma nomini kiriting',
                 'phone.required' => 'Telefonni kiriting',
                 'phone.unique' => 'Telefon mavjud',
                 'password.required' => 'Parolni kiriting',
@@ -43,10 +43,10 @@ class DeviceController extends Controller
         ]);
 
         $notification = array(
-            'message' => 'Device muvaffaqiyatli qo\'shildi!',
+            'message' => 'Qurilma muvaffaqiyatli qo\'shildi!',
             'alert-type' => 'success'
         );
-        return redirect()->back()->with($notification);
+        return redirect()->route('all.device')->with($notification);
     }
 
     public function deviceEdit($device_id)
@@ -63,7 +63,7 @@ class DeviceController extends Controller
                 'name' => 'required',
             ],
             [
-                'name.required' => 'Device nomini kiriting',
+                'name.required' => 'Qurilma nomini kiriting',
             ]
         );
         $device = Device::where('id', $device_id)->first();
@@ -74,7 +74,7 @@ class DeviceController extends Controller
         ]);
 
         $notification = array(
-            'message' => 'Device muvaffaqiyatli o\'zgartirildi!',
+            'message' => 'Qurilma muvaffaqiyatli o\'zgartirildi!',
             'alert-type' => 'success'
         );
         return redirect()->route('all.device')->with($notification);
@@ -87,7 +87,7 @@ class DeviceController extends Controller
             'status' => 'deleted'
         ]);
         $notification = array(
-            'message' => 'Device muvaffaqiyatli o\'chirildi!',
+            'message' => 'Qurilma muvaffaqiyatli o\'chirildi!',
             'alert-type' => 'info'
         );
         return redirect()->route('all.device')->with($notification);
@@ -122,9 +122,9 @@ class DeviceController extends Controller
         ]);
 
         $notification = array(
-            'message' => 'Device logini muvaffaqiyatli o\'zgartirildi!',
+            'message' => 'Qurilma logini muvaffaqiyatli o\'zgartirildi!',
             'alert-type' => 'success'
         );
-        return redirect()->back()->with($notification);
+        return redirect()->route('all.device')->with($notification);
     }
 }

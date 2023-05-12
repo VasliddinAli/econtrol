@@ -122,11 +122,12 @@ class EmployeeController extends Controller
         $request->validate(
             [
                 'phone' => 'required',
-                'pin_code' => 'required',
+                'pin_code' => 'required|unique:employees',
             ],
             [
                 'phone.required' => 'Telefon kiriting',
                 'pin_code.required' => 'Parolni kiriting',
+                'pin_code.unique' => 'Ushbu pin koddan avval foydalanilgan!',
             ]
         );
 
@@ -140,13 +141,14 @@ class EmployeeController extends Controller
                 'pin_code' => $pin_str,
                 'qrcode' => "https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=$pin_str"
             ]);
-        } else {
-            $notification = array(
-                'message' => 'Ushbu pin koddan avval foydalanilgan!',
-                'alert-type' => 'warning'
-            );
-            return redirect()->back()->with($notification);
         }
+        //  else {
+        //     $notification = array(
+        //         'message' => 'Ushbu pin koddan avval foydalanilgan!',
+        //         'alert-type' => 'warning'
+        //     );
+        //     return redirect()->back()->with($notification);
+        // }
 
         $notification = array(
             'message' => 'Xodim logini muvaffaqiyatli o\'zgartirildi!',
