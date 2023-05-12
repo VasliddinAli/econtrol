@@ -37,7 +37,7 @@ Route::group(['middleware' => ['c_e_o:c_e_o']], function () {
     Route::post('/', [AdminController::class, 'store'])->name('admin.login');
 });
 Route::middleware(['auth:sanctum,c_e_o', 'verified'])
-    ->get('/admin/dashboard', [IndexController::class, 'mainPage'])->name('dashboard');
+    ->get('/c_e_o/dashboard', [IndexController::class, 'mainPage'])->name('dashboard');
 
 Route::get('attendance/bot/view', [AttendancesController::class, 'AttendanceBotView'])->name('bot_view');
 
