@@ -53,10 +53,10 @@ class ApiDeviceController extends Controller
     {
         $device = Device::where('id', $request->id)->first();
         if ($device == null) {
-            return $this->sendResponse(null, false, "2");
+            return $this->sendResponse(null, false, "Device is not found");
         } else {
             if (Hash::check($request->password, $device->password) === FALSE) {
-                return $this->sendResponse(null, false, "1");
+                return $this->sendResponse(null, false, "Password is incorrect");
             } else {
                 $token = Str::random(30);
                 $device->update([
