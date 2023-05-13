@@ -9,11 +9,6 @@ use Illuminate\Http\Request;
 
 class AttendancesController extends Controller
 {
-    public function AttendanceView()
-    {
-        $attendances = Attendance::get();
-        return view('backend.attendance.attendance_view', compact('attendances'));
-    }
 
     public function AttendanceBotView()
     {
@@ -34,7 +29,7 @@ class AttendancesController extends Controller
     }
 
 
-    public function filterView(Request $request)
+    public function AttendanceView(Request $request)
     {
         $start_date = $request->start_date;
         $end_date = $request->end_date;
