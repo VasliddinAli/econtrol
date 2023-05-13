@@ -96,13 +96,10 @@ class DeviceController extends Controller
 
         $request->validate(
             [
-                'phone' => 'required',
-                'password' => 'required|unique:devices',
+                'password' => 'required',
             ],
             [
-                'phone.required' => 'Telefon kiriting',
                 'password.required' => 'Parolni kiriting',
-                'password.unique' => 'Ushbu paroldan avval foydalanilgan',
             ]
         );
         $password = Hash::make($request->password);
@@ -110,7 +107,6 @@ class DeviceController extends Controller
         $device = Device::where('id', $device_id)->first();
 
         $device->update([
-            'phone' => $request->phone,
             'password' => $password,
         ]);
 
