@@ -76,7 +76,7 @@
                                     <td>{{ $item->date }}</td>
                                     <td>{{ $item->employee->name }}</td>
                                     <td>{{ $item->device->name }}</td>
-                                    <td>{{ $item->purpose_id == null ? "" : $item->purpose->purpose }}</td>
+                                    <td class="{{ $item->purpose_id == 1 ? 'text-danger' : 'text-success'}}">{{ $item->purpose_id == null ? "" : $item->purpose->purpose }}</td>
                                     <td width="10%">
                                         <a href="{{ route('attendance.delete', $item->id) }}" class="btn btn-danger" title="O'chirish" id="delete"><i class="fas fa-trash"></i></a>
                                     </td>
