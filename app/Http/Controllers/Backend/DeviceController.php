@@ -22,26 +22,20 @@ class DeviceController extends Controller
         $request->validate(
             [
                 'name' => 'required',
-                'phone' => 'required|unique:devices',
                 'password' => 'required',
             ],
             [
                 'name.required' => 'Qurilma nomini kiriting',
-                'phone.required' => 'Telefonni kiriting',
-                'phone.unique' => 'Telefon mavjud',
                 'password.required' => 'Parolni kiriting',
             ]
         );
         $password = Hash::make($request->password);
-        $phone = Str::after($request->phone, '+');
 
         Device::insert([
             'name' => $request->name,
-            'phone' => $phone,
             'password' => $password,
             'created_at' => Carbon::now()
         ]);
-
         $notification = array(
             'message' => 'Qurilma muvaffaqiyatli qo\'shildi!',
             'alert-type' => 'success'
@@ -67,10 +61,8 @@ class DeviceController extends Controller
             ]
         );
         $device = Device::where('id', $device_id)->first();
-        $phone = Str::after($request->phone, '+');
         $device->update([
             'name' => $request->name,
-            'phone' => $phone,
         ]);
 
         $notification = array(
@@ -105,11 +97,12 @@ class DeviceController extends Controller
         $request->validate(
             [
                 'phone' => 'required',
-                'password' => 'required',
+                'password' => 'required|unique:devices',
             ],
             [
                 'phone.required' => 'Telefon kiriting',
                 'password.required' => 'Parolni kiriting',
+                'password.unique' => 'Ushbu paroldan avval foydalanilgan',
             ]
         );
         $password = Hash::make($request->password);

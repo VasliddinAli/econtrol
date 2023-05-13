@@ -41,13 +41,6 @@
                                             <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
-                                        <div class="form-group">
-                                            <label>Telefon</label>
-                                            <input type="text" name="phone" value="{{ $device->phone }}" class="form-control">
-                                            @error('phone')
-                                            <span class="text-danger">{{ $message }}</span>
-                                            @enderror
-                                        </div>
                                     </div>
                                 </div>
                                 <div class="">

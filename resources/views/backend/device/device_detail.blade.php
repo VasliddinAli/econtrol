@@ -62,15 +62,6 @@
             <!-- /.col -->
             <div class="col-md-9">
                 <div class="card">
-                    <div class="card-header p-2">
-                        <ul class="nav nav-pills">
-                            <li class="nav-item">
-                                <a class="nav-link active" href="#secton1" data-toggle="tab">
-                                    Parolni almashtirish
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
                     <div class="card-body">
                         <div class="tab-content">
                             <div class="active tab-pane" id="secton1">
@@ -82,15 +73,6 @@
                                                 <div class="card-body">
                                                     <div class="col-md-12">
                                                         <div class="row">
-                                                            <div class="col-md-6">
-                                                                <div class="form-group">
-                                                                    <label>Telefon</label>
-                                                                    <input type="number" name="phone" value="{{ $device->phone }}" class="form-control">
-                                                                    @error('phone')
-                                                                    <span class="text-danger">{{ $message }}</span>
-                                                                    @enderror
-                                                                </div>
-                                                            </div>
                                                             <div class="col-md-6">
                                                                 <div class="form-group">
                                                                     <label>Yangi Parol</label>
