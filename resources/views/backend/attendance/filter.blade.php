@@ -26,8 +26,9 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="row">
-                            <div class="col-md-3 form-group">
+                            <div class="col-md-6 form-group">
                                 <label>Sanalar bo'yicha filter:</label>
+
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">
@@ -39,16 +40,9 @@
                                 <!-- /.input group -->
                             </div>
 
-                            <div class="col-md-3 form-group">
+                            <div class="col-md-6 form-group">
                                 <label>Holat bo'yicha filter:</label>
-                                <select onchange="filterStatusAttendance()" id="attendance_type" name="status" class="form-control select2" style="width: 100%;">
-                                    <option {{ $attendance_type == 'all' ? 'selected' : '' }} value="all">Hammasi</option>
-                                    <option {{ $attendance_type == 'input' ? 'selected' : '' }} value="input">Keldi</option>
-                                    <option {{ $attendance_type == 'output' ? 'selected' : '' }} value="output">Ketdi</option>
-                                </select>
-                            </div>
-                            <div class="col-md-3 form-group">
-                                <label>Holat bo'yicha filter:</label>
+
                                 <select onchange="filterStatusAttendance()" id="attendance_type" name="status" class="form-control select2" style="width: 100%;">
                                     <option {{ $attendance_type == 'all' ? 'selected' : '' }} value="all">Hammasi</option>
                                     <option {{ $attendance_type == 'input' ? 'selected' : '' }} value="input">Keldi</option>

@@ -71,7 +71,8 @@ Route::middleware(['auth:c_e_o'])->group(function () {
         Route::get('/delete/{id}', [EmployeeController::class, 'EmployeeDelete'])->name('employee.delete');
     });
     Route::prefix('attendance')->group(function () {
-        Route::get('/view', [AttendancesController::class, 'AttendanceView'])->name('all.attendance');
+        Route::get('/view', [AttendancesController::class, 'filterView'])->name('all.attendance');
         Route::get('/delete/{id}', [AttendancesController::class, 'AttendanceDelete'])->name('attendance.delete');
+        Route::get('/filter', [AttendancesController::class, 'filterView'])->name('all.attendanceFilter');
     });
 });
