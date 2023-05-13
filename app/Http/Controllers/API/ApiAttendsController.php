@@ -43,15 +43,17 @@ class ApiAttendsController extends Controller
             $purposes = Purpose::select('id', 'purpose')->get();
         }
         $employee = Employee::where('id', $request->employee_id)->select('id', 'name', 'position')->first();
-        $file = $request->file('image');
-        $imageName = time() . '.' . $file->extension();
-        $imagePath = public_path() . '/upload/images';
-        $image = 'upload/images/' . $imageName;
-        $file->move($imagePath, $imageName);
+        $files = $request->file('image');
+        $file = Str::random(20);
+        $ext = strtolower($files->getClientOriginalExtension());
+        $file_full_name = $file . '.' . $ext;
+        $upload_path = 'upload/images/';
+        $save_url_file = $upload_path . $file_full_name;
+        $success = $files->move($upload_path, $file_full_name);
 
         $attendance = new Attendance();
         $attendance->type = $request->type;
-        $attendance->image = $image;
+        $attendance->image = $save_url_file;
         $attendance->date = Carbon::now();
         $attendance->employee_id = $request->employee_id;
         $attendance->device_id = $request->device_id;
@@ -69,17 +71,11 @@ class ApiAttendsController extends Controller
 
     public function addAttendsOffline(Request $request)
     {
-        // $file = $request->file('image');
-        // $imageName = time() . '.' . $file->extension();
-        // $imagePath = public_path() . '/upload/images';
-        // $image = 'upload/images/' . $imageName;
-        // $file->move($imagePath, $imageName);
-
         $files = $request->file('image');
         $file = Str::random(20);
-        $ext = strtolower($files->getClientOriginalExtension()); // You can use also getClientOriginalName()
+        $ext = strtolower($files->getClientOriginalExtension());
         $file_full_name = $file . '.' . $ext;
-        $upload_path = 'upload/images/';    //Creating Sub directory in Public folder to put file
+        $upload_path = 'upload/images/';
         $save_url_file = $upload_path . $file_full_name;
         $success = $files->move($upload_path, $file_full_name);
 
