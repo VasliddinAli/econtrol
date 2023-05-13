@@ -70,13 +70,6 @@ Route::middleware(['auth:c_e_o'])->group(function () {
         Route::post('/update_login/{id}', [EmployeeController::class, 'EmployeeUpdateLogin'])->name('employee_login.update');
         Route::get('/delete/{id}', [EmployeeController::class, 'EmployeeDelete'])->name('employee.delete');
     });
-    Route::prefix('purpose')->group(function () {
-        Route::get('/view', [PurposeController::class, 'PurposeView'])->name('all.purpose');
-        Route::post('/store', [PurposeController::class, 'PurposeStore'])->name('purpose.store');
-        Route::get('/edit/{id}', [PurposeController::class, 'PurposeEdit'])->name('purpose.edit');
-        Route::post('/update/{id}', [PurposeController::class, 'PurposeUpdate'])->name('purpose.update');
-        Route::get('/delete/{id}', [PurposeController::class, 'PurposeDelete'])->name('purpose.delete');
-    });
     Route::prefix('attendance')->group(function () {
         Route::get('/view', [AttendancesController::class, 'AttendanceView'])->name('all.attendance');
         Route::get('/delete/{id}', [AttendancesController::class, 'AttendanceDelete'])->name('attendance.delete');

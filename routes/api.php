@@ -25,10 +25,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::prefix('device')->group(function () {
     Route::get('list', [ApiDeviceController::class, 'getDevices']);
-    Route::post('add', [ApiDeviceController::class, 'addDevice']);
-    Route::get('{id}/detail', [ApiDeviceController::class, 'getDevice']);
-    Route::post('{id}/update', [ApiDeviceController::class, 'updateDevice']);
-    Route::get('{id}/delete', [ApiDeviceController::class, 'deleteDevice']);
+    // Route::post('add', [ApiDeviceController::class, 'addDevice']);
+    // Route::get('{id}/detail', [ApiDeviceController::class, 'getDevice']);
+    // Route::post('{id}/update', [ApiDeviceController::class, 'updateDevice']);
+    // Route::get('{id}/delete', [ApiDeviceController::class, 'deleteDevice']);
+    Route::post('find', [ApiDeviceController::class, 'findDeviceByPassword']);
 });
 Route::prefix('employee')->group(function () {
     Route::get('list', [ApiEmployeeController::class, 'getEmployees']);

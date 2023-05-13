@@ -48,7 +48,7 @@
                                 <tr>
                                     <td>{{ $item->id }}</td>
                                     <td>
-                                        <img src="{{ asset($item->image) }}" style="width: 100px;">
+                                        <a href="{{ asset($item->image) }}" target="_blank"><img src="{{ asset($item->image) }}" width="50"></a>
                                     </td>
                                     <td>{{ $item->type }}</td>
                                     <td>{{ $item->date }}</td>
