@@ -8,6 +8,7 @@ use App\Models\Employee;
 use App\Models\Purpose;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class ApiAttendsController extends Controller
 {
@@ -68,15 +69,23 @@ class ApiAttendsController extends Controller
 
     public function addAttendsOffline(Request $request)
     {
-        $file = $request->file('image');
-        $imageName = time() . '.' . $file->extension();
-        $imagePath = public_path() . '/upload/images';
-        $image = 'upload/images/' . $imageName;
-        $file->move($imagePath, $imageName);
+        // $file = $request->file('image');
+        // $imageName = time() . '.' . $file->extension();
+        // $imagePath = public_path() . '/upload/images';
+        // $image = 'upload/images/' . $imageName;
+        // $file->move($imagePath, $imageName);
+
+        $files = $request->file('image');
+        $file = Str::random(20);
+        $ext = strtolower($files->getClientOriginalExtension()); // You can use also getClientOriginalName()
+        $file_full_name = $file . '.' . $ext;
+        $upload_path = 'upload/images/';    //Creating Sub directory in Public folder to put file
+        $save_url_file = $upload_path . $file_full_name;
+        $success = $files->move($upload_path, $file_full_name);
 
         $attendance = new Attendance();
         $attendance->type = $request->type;
-        $attendance->image = $image;
+        $attendance->image = $save_url_file;
         $attendance->date = $request->date;
         $attendance->employee_id = $request->employee_id;
         $attendance->device_id = $request->device_id;
