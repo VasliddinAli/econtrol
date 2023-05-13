@@ -195,7 +195,7 @@
                 }
 
                 var params = "first_type=" + first_type + "&attendance_type=" + attendance_type + "&start_date=" + startDate + "&end_date=" + endDate;
-                location.href = "{{ url('/attendance/filter?') }}" + params;
+                location.href = "{{ url('/attendance/view?') }}" + params;
             });
         });
 
@@ -209,7 +209,7 @@
             }
 
             var params = "first_type=" + first_type + "&attendance_type=" + attendance_type + "&start_date=" + startDate + "&end_date=" + endDate;
-            location.href = "{{ url('/attendance/filter?') }}" + params;
+            location.href = "{{ url('/attendance/view?') }}" + params;
 
         }
     </script>

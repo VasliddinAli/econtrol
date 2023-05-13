@@ -73,6 +73,5 @@ Route::middleware(['auth:c_e_o'])->group(function () {
     Route::prefix('attendance')->group(function () {
         Route::get('/view', [AttendancesController::class, 'filterView'])->name('all.attendance');
         Route::get('/delete/{id}', [AttendancesController::class, 'AttendanceDelete'])->name('attendance.delete');
-        Route::get('/filter', [AttendancesController::class, 'filterView'])->name('all.attendanceFilter');
     });
 });
