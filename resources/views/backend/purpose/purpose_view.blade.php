@@ -30,7 +30,7 @@
                         </div> -->
                         <!-- /.card-header -->
                         <div class="card-body">
-                            <table id="example1" class="table table-bordered table-striped">
+                            <table id="example0" class="table table-bordered table-striped">
                                 <thead>
                                 <tr>
                                     <th>ID</th>
@@ -109,12 +109,6 @@
                         url: "{{  url('/training/center/image/ajax') }}/" + center_id,
                         type: "GET",
                         dataType: "json",
-                        // success: function (data) {
-                        //     var d = $('select[name="district_id"]').empty();
-                        //     $.each(data, function (key, value) {
-                        //         $('select[name="district_id"]').append('<option value="' + value.id + '">' + value.name_uz + '</option>');
-                        //     });
-                        // },
                     });
                 } else {
                     alert('danger');

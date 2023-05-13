@@ -223,7 +223,7 @@
             {{--                        </td>--}}
             {{--                    </tr>`;--}}
             {{--        });--}}
-            {{--        order_div.append(`<table id="example" class="table table-bordered table-striped">--}}
+            {{--        order_div.append(`<table id="0" class="table table-bordered table-striped">--}}
             {{--                                    <thead>--}}
             {{--                                        <tr>--}}
             {{--                                            <th>ID</th>--}}
@@ -282,7 +282,7 @@
         {{--                            </td>--}}
         {{--                        </tr>`;--}}
         {{--        });--}}
-        {{--        order_div.append(`<table id="example" class="table table-bordered table-striped">--}}
+        {{--        order_div.append(`<table id="0" class="table table-bordered table-striped">--}}
         {{--                                        <thead>--}}
         {{--                                            <tr>--}}
         {{--                                                <th>ID</th>--}}
@@ -308,6 +308,25 @@
             "lengthChange": false,
             "autoWidth": false,
             "buttons": [{extend: 'copy', text: 'Nusxa olish'}, "excel", "pdf"],
+            "oLanguage": {
+                "sSearch": "Qidirish:"
+            },
+            "language": {
+                "info": "_TOTAL_ ta elementdan _START_ dan _END_ gacha ko'rsatilmoqda",
+                "infoEmpty": "0 ta elementdan 0 dan 0 gacha ko'rsatilmoqda",
+                emptyTable: "Jadvalda ma'lumotlar mavjud emas",
+                "paginate": {
+                    "previous": "Oldingi",
+                    "next": "Keyingi",
+                }
+            }
+            // "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+        $("#example0").DataTable({
+            "responsive": true,
+            "lengthChange": false,
+            "autoWidth": false,
+            "buttons": false,
             "oLanguage": {
                 "sSearch": "Qidirish:"
             },
