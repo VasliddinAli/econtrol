@@ -84,7 +84,7 @@ class ApiAttendsController extends Controller
             'date' => $request->date,
             'employee_id' => $request->employee_id,
             'device_id' => $request->device_id,
-            'purpose_id' => $request->purpose_id
+            'purpose_id' => $request->purpose_id > 0 ? $request->purpose_id : null
         ]);
         return $this->sendResponse(null, true, "");
     }
