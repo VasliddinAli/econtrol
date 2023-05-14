@@ -12,10 +12,6 @@ class ApiEmployeeController extends Controller
 {
     public function getEmployees()
     {
-        $device = Device::where(['status' => 'active', 'token' => $this->getToken()])->first();
-        if ($device == null) {
-            return $this->sendResponse(null, false, "Not Found Device", 401);
-        }
         $employees = Employee::where('status', '!=', 'deleted')->get();
         return $this->sendResponse($employees, true, "");
     }

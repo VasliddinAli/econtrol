@@ -10,10 +10,6 @@ class ApiPurposeController extends Controller
 {
     public function getPurpose()
     {
-        $device = Device::where(['status' => 'active', 'token' => $this->getToken()])->first();
-        if ($device == null) {
-            return $this->sendResponse(null, false, "Not Found Device", 401);
-        }
         $purpose = Purpose::get();
         return $this->sendResponse($purpose, true, "");
     }
