@@ -188,19 +188,23 @@
                 var endDate = end.format('YYYY-MM-DD');
 
                 var attendance_type = $('select[id="attendance_type"]').val();
+                var attendance_device = $('select[id="attendance_device"]').val();
+                var attendance_purpose_id = $('select[id="attendance_purpose_id"]').val();
                 var startDate = $('#reservation').data('daterangepicker').startDate.format('YYYY-MM-DD');
                 var endDate = $('#reservation').data('daterangepicker').endDate.format('YYYY-MM-DD');
                 if (startDate != endDate) {
                     first_type = 'date';
                 }
 
-                var params = "first_type=" + first_type + "&attendance_type=" + attendance_type + "&start_date=" + startDate + "&end_date=" + endDate;
+                var params = "first_type=" + first_type + "&attendance_type=" + attendance_type + "&attendance_device=" + attendance_device + "&attendance_purpose_id=" + attendance_purpose_id + "&start_date=" + startDate + "&end_date=" + endDate;
                 location.href = "{{ url('/attendance/view?') }}" + params;
             });
         });
 
-        function filterStatusAttendance() {
+        function filterAttendance() {
             var attendance_type = $('select[id="attendance_type"]').val();
+            var attendance_device = $('select[id="attendance_device"]').val();
+            var attendance_purpose_id = $('select[id="attendance_purpose_id"]').val();
             var startDate = $('#reservation').data('daterangepicker').startDate.format('YYYY-MM-DD');
             var endDate = $('#reservation').data('daterangepicker').endDate.format('YYYY-MM-DD');
             var first_type = 'status';
@@ -208,10 +212,23 @@
                 first_type = 'date';
             }
 
-            var params = "first_type=" + first_type + "&attendance_type=" + attendance_type + "&start_date=" + startDate + "&end_date=" + endDate;
+            var params = "first_type=" + first_type + "&attendance_type=" + attendance_type + "&attendance_device=" + attendance_device + "&attendance_purpose_id=" + attendance_purpose_id + "&start_date=" + startDate + "&end_date=" + endDate;
             location.href = "{{ url('/attendance/view?') }}" + params;
-
         }
+
+        // function filterDeviceAttendance() {
+        //     var attendance_type = $('select[id="attendance_type"]').val();
+        //     var attendance_device = $('select[id="attendance_device"]').val();
+        //     var startDate = $('#reservation').data('daterangepicker').startDate.format('YYYY-MM-DD');
+        //     var endDate = $('#reservation').data('daterangepicker').endDate.format('YYYY-MM-DD');
+        //     var first_type = 'status';
+        //     if (startDate != endDate) {
+        //         first_type = 'date';
+        //     }
+
+        //     var params = "first_type=" + first_type + "&attendance_type=" + attendance_type + "&attendance_device=" + attendance_device + "&start_date=" + startDate + "&end_date=" + endDate;
+        //     location.href = "{{ url('/attendance/view?') }}" + params;
+        // }
     </script>
 
     <script>
