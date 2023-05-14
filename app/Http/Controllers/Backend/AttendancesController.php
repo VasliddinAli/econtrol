@@ -92,9 +92,19 @@ class AttendancesController extends Controller
         if ($attendance->warning != true) {
             $attendance->warning = true;
             $attendance->save();
+            $notification = array(
+                'message' => 'Hodimga ogohlantirish berildi!',
+                'alert-type' => 'success'
+            );
+            return redirect()->back()->with($notification);
         } else {
             $attendance->warning = null;
             $attendance->save();
+            $notification = array(
+                'message' => 'Ogohlantirish qaytarildi!',
+                'alert-type' => 'warning'
+            );
+            return redirect()->back()->with($notification);
         }
     }
 }

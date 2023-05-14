@@ -72,6 +72,7 @@ Route::middleware(['auth:c_e_o'])->group(function () {
     });
     Route::prefix('attendance')->group(function () {
         Route::get('/view', [AttendancesController::class, 'AttendanceView'])->name('all.attendance');
+        Route::get('/warning/{id}', [AttendancesController::class, 'AddWarning'])->name('attendance.warning');
         Route::get('/delete/{id}', [AttendancesController::class, 'AttendanceDelete'])->name('attendance.delete');
     });
 });
