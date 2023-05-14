@@ -65,7 +65,7 @@ class ApiAttendsController extends Controller
         $attendance->type = $request->type;
         $attendance->image = $save_url_file;
         $attendance->date = Carbon::now();
-        $attendance->late = $moment == true ? null : true;
+        $attendance->late = $moment == true ? false : true;
         $attendance->employee_id = $request->employee_id;
         $attendance->device_id = $request->device_id;
         $attendance->save();
