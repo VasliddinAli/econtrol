@@ -62,28 +62,30 @@
                     </div> -->
                             <!-- /.card-header -->
                             <div class="card-body">
-                                <table id="example1" class="table table-bordered table-striped">
+                                <table id="example1" class="table table-bordered table-striped attendances">
                                     <thead>
                                         <tr>
                                             <th>ID</th>
                                             <th>Rasmi</th>
-                                            <th>Hodim</th>
                                             <th>Holati</th>
                                             <th>Vaqti</th>
+                                            <th>Hodim</th>
                                             <th>Qurilma</th>
                                             <th>Sabab</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($attendances as $item)
-                                        <tr>
+                                        <tr class="{{ $item->late == true ? 'bg-danger' : '' }}">
                                             <td>{{ $item->id }}</td>
                                             <td>
-                                                <img src="{{ asset($item->image) }}" style="width: 100px;">
+                                                <a href="{{ asset($item->image) }}" target="_blank"><img src="{{ asset($item->image) }}" width="50"></a>
                                             </td>
-                                            <td>{{ $item->employee->name }}</td>
-                                            <td>{{ $item->type }}</td>
+                                            <td>
+                                                <p class="{{ $item->type == 'Keldi' ? 'badge bg-success' : 'badge bg-info' }}">{{ $item->type }}</p>
+                                            </td>
                                             <td>{{ $item->date }}</td>
+                                            <td>{{ $item->employee->name }}</td>
                                             <td>{{ $item->device->name }}</td>
                                             <td>{{ $item->purpose_id == null ? "" : $item->purpose->purpose }}</td>
                                         </tr>
