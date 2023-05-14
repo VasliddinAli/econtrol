@@ -64,8 +64,7 @@
                             </li>
                         </ul>
 
-                        <a href="{{ route('employee.delete', $employee->id) }}"
-                                class="btn btn-danger btn-block mt-2" id="delete"><b>O'chirish</b></a>
+                        <a href="{{ route('employee.delete', $employee->id) }}" class="btn btn-danger btn-block mt-2" id="delete"><b>O'chirish</b></a>
                     </div>
                     <!-- /.card-body -->
                 </div>
@@ -79,7 +78,12 @@
                         <ul class="nav nav-pills">
                             <li class="nav-item">
                                 <a class="nav-link active" href="#secton1" data-toggle="tab">
-                                    Parolni almashtirish
+                                    Parolni o'zgartirish
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#secton2" data-toggle="tab">
+                                    Ogohlantirishar
                                 </a>
                             </li>
                         </ul>
@@ -126,6 +130,36 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="tab-pane" id="secton2">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="card">
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">ID</th>
+                                                        <th scope="col">Vaqti</th>
+                                                        <th scope="col">Rasmi</th>
+                                                        <th scope="col">Qurilma</th>
+                                                        <th scope="col">Sabab</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach($warnings as $warning)
+                                                    <tr>
+                                                        <th scope="row">{{ $warning->id }}</th>
+                                                        <td>{{ $warning->date }}</td>
+                                                        <td><a href="{{ asset($warning->image) }}" target="_blank"><img src="{{ asset($warning->image) }}" width="50" alt="image not found"></a></td>
+                                                        <td>{{ $warning->device->name }}</td>
+                                                        <td>{{ $warning->purpose_id == null ? "" : $warning->purpose->purpose }}</td>
+                                                    </tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -135,17 +169,17 @@
 </section>
 
 <script type="text/javascript">
-    $(document).ready(function () {
-        $('select[name="region_id"]').on('change', function () {
+    $(document).ready(function() {
+        $('select[name="region_id"]').on('change', function() {
             var region_id = $(this).val();
             if (region_id) {
                 $.ajax({
                     url: "{{  url('/brands/branches/region/district/ajax') }}/" + region_id,
                     type: "GET",
                     dataType: "json",
-                    success: function (data) {
+                    success: function(data) {
                         var d = $('select[name="district_id"]').empty();
-                        $.each(data, function (key, value) {
+                        $.each(data, function(key, value) {
                             $('select[name="district_id"]').append('<option value="' + value.id + '">' + value.name_uz + '</option>');
                         });
                     },
@@ -158,4 +192,3 @@
 </script>
 
 @endsection
-

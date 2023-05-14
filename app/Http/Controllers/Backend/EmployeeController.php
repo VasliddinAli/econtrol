@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Attendance;
 use App\Models\Employee;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -114,7 +115,8 @@ class EmployeeController extends Controller
     public function employeeShow($employee_id)
     {
         $employee = Employee::findOrFail($employee_id);
-        return view('backend.employee.employee_detail', compact('employee'));
+        $warnings = Attendance::where(['employee_id' => $employee_id, 'warning' => 1])->get();
+        return view('backend.employee.employee_detail', compact('employee', 'warnings'));
     }
 
     public function employeeUpdateLogin(Request $request, $employee_id)
