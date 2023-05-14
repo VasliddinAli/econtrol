@@ -78,14 +78,14 @@ class ApiAttendsController extends Controller
         $save_url_file = $upload_path . $file_full_name;
         $success = $files->move($upload_path, $file_full_name);
 
-        $attendance = new Attendance();
-        $attendance->type = $request->type;
-        $attendance->image = $save_url_file;
-        $attendance->date = $request->date;
-        $attendance->employee_id = $request->employee_id;
-        $attendance->device_id = $request->device_id;
-        $attendance->purpose_id = $request->purpose_id;
-        $attendance->save();
+        Attendance::insert([
+            'type' => $request->type,
+            'image' => $save_url_file,
+            'date' => $request->date,
+            'employee_id' => $request->employee_id,
+            'device_id' => $request->device_id,
+            'purpose_id' => $request->purpose_id
+        ]);
         return $this->sendResponse(null, true, "");
     }
 
