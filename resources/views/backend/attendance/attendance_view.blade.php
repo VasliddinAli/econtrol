@@ -92,7 +92,7 @@
                                     <td>
                                         <a href="{{ asset($item->image) }}" target="_blank"><img src="{{ asset($item->image) }}" width="50"></a>
                                     </td>
-                                    <td>{{ $item->type }}</td>
+                                    <td><p class="{{ $item->type == 'Keldi' ? 'bg-success' : 'bg-info' }}">{{ $item->type }}</p></td>
                                     <td>{{ $item->date }}</td>
                                     <td>{{ $item->employee->name }}</td>
                                     <td>{{ $item->device->name }}</td>
