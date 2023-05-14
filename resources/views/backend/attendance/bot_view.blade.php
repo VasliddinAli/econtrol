@@ -78,14 +78,10 @@
                                         @foreach ($attendances as $item)
                                         <tr class="{{ $item->late == true ? 'bg-danger' : '' }}">
                                             <td>{{ $item->id }}</td>
-                                            <td>
-                                                <a href="{{ asset($item->image) }}" target="_blank"><img src="{{ asset($item->image) }}" width="50"></a>
-                                            </td>
-                                            <td>
-                                                <p class="{{ $item->type == 'Keldi' ? 'badge bg-success' : 'badge bg-info' }}">{{ $item->type }}</p>
-                                            </td>
-                                            <td>{{ $item->date }}</td>
+                                            <td><a href="{{ asset($item->image) }}" target="_blank"><img src="{{ asset($item->image) }}" width="50"></a></td>
                                             <td>{{ $item->employee->name }}</td>
+                                            <td><p class="{{ $item->type == 'Keldi' ? 'badge bg-success' : 'badge bg-info' }}">{{ $item->type }}</p></td>
+                                            <td>{{ $item->date }}</td>
                                             <td>{{ $item->device->name }}</td>
                                             <td>{{ $item->purpose_id == null ? "" : $item->purpose->purpose }}</td>
                                         </tr>
