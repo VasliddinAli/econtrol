@@ -87,7 +87,7 @@
                             </thead>
                             <tbody>
                                 @foreach ($attendances as $item)
-                                <tr>
+                                <tr class="{{ $item->late == true ? 'bg-danger' : '' }}">
                                     <td>{{ $item->id }}</td>
                                     <td>
                                         <a href="{{ asset($item->image) }}" target="_blank"><img src="{{ asset($item->image) }}" width="50"></a>
@@ -96,10 +96,10 @@
                                     <td>{{ $item->date }}</td>
                                     <td>{{ $item->employee->name }}</td>
                                     <td>{{ $item->device->name }}</td>
-                                    <td class="{{ $item->purpose_id == 1 ? 'text-danger' : 'text-success'}}">{{ $item->purpose_id == null ? "" : $item->purpose->purpose }}</td>
+                                    <td>{{ $item->purpose_id == null ? "" : $item->purpose->purpose }}</td>
                                     <td width="10%">
-                                        <a href="{{ route('attendance.delete', $item->id) }}" class="btn btn-danger" title="O'chirish" id="delete"><i class="fas fa-trash"></i></a>
-                                        <a {{ $item->late == 0 ? 'hidden' : '' }} href="{{ route('attendance.delete', $item->id) }}" class="btn btn-warning" title="Ogohlantirish" id="delete"><i class="fas fa-exclamation-triangle"></i></a>
+                                        <a href="{{ route('attendance.delete', $item->id) }}" class="btn {{ $item->late == null ? 'btn-danger' : 'btn-light' }}" title="O'chirish" id="delete"><i class="fas fa-trash"></i></a>
+                                        <a {{ $item->late == null ? 'hidden' : '' }} href="{{ route('attendance.delete', $item->id) }}" class="btn btn-warning" title="Ogohlantirish" id="delete"><i class="fas fa-exclamation-triangle"></i></a>
                                     </td>
                                 </tr>
                                 @endforeach

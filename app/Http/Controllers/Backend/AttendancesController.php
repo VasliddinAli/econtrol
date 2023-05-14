@@ -38,7 +38,6 @@ class AttendancesController extends Controller
         return redirect()->route('all.attendance')->with($notification);
     }
 
-
     public function AttendanceView(Request $request)
     {
         $start_date = $request->start_date;
@@ -83,7 +82,19 @@ class AttendancesController extends Controller
 
         $devices = Device::all();
         $purposes = Purpose::all();
-        
+
         return view('backend.attendance.attendance_view', compact('attendances', 'start_date', 'full_date', 'attendance_type', 'attendance_device', 'attendance_purpose_id', 'devices', 'purposes'));
+    }
+
+    public function AddWarning(Request $request)
+    {
+        $attendance = Attendance::where('id', $request->id)->first();
+        if ($attendance->warning != true) {
+            $attendance->warning = true;
+            $attendance->save();
+        } else {
+            $attendance->warning = null;
+            $attendance->save();
+        }
     }
 }
