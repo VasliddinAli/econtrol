@@ -34,9 +34,9 @@ Route::prefix('device')->group(function () {
 Route::prefix('employee')->group(function () {
     Route::get('list', [ApiEmployeeController::class, 'getEmployees']);
     Route::post('add', [ApiEmployeeController::class, 'addEmployee']);
-    Route::get('{id}/detail', [ApiEmployeeController::class, 'getEmployee']);
-    Route::post('{id}/update', [ApiEmployeeController::class, 'updateEmployee']);
-    Route::get('{id}/delete', [ApiEmployeeController::class, 'deleteEmployee']);
+    Route::get('detail/{id}', [ApiEmployeeController::class, 'getEmployee']);
+    Route::post('update/{id}', [ApiEmployeeController::class, 'updateEmployee']);
+    Route::get('delete/{id}', [ApiEmployeeController::class, 'deleteEmployee']);
     Route::get('{pinCode}/find', [ApiEmployeeController::class, 'findEmployeeByPinCode']);
 });
 Route::prefix('attendance')->group(function () {
