@@ -21,6 +21,8 @@ class CreateAttendancesTable extends Migration
             $table->string('image')->nullable();
             $table->integer('device_id');
             $table->integer('purpose_id')->nullable();
+            $table->string('warning')->nullable();
+            $table->string('late')->nullable();
             $table->timestamps();
         });
     }

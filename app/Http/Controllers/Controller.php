@@ -15,7 +15,6 @@ class Controller extends BaseController
     // const API_ACCESS_KEY = "AAAASttaBW8:APA91bG5MSbmJu17KSJ6uyrh2phxLwqIVhc4dazGxznNBzgP2Dd-bbBokx5qSptHWaAFhX3y65NgbOI427KzRKlbGr-lSnoIwjhFl7su4VK_ScECykbtKAKmkrJsltLwOxFqD-uRk2pT";
     // const API_KEY = '5989425380:AAHyv9jEf9-rxtXC3g5DRw9JRB8dunpfcvA';
 
-
     public function sendResponse($result, $success = NULL, $message = NULL, $error_code = 0)
     {
         $response = [
