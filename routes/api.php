@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\ApiAttendsController;
+use App\Http\Controllers\API\ApiCEOController;
 use App\Http\Controllers\API\ApiDeviceController;
 use App\Http\Controllers\API\ApiEmployeeController;
 use App\Http\Controllers\API\ApiPurposeController;
