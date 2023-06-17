@@ -41,7 +41,7 @@ class ApiEmployeeController extends Controller
         if ($pin == null) {
             return $pin_code;
         } else {
-            return $this->generateEmployeePin();
+            return $this->sendResponse(null, false, "Pin kod avval ishlatilgan qayta uruning");
         }
     }
 
@@ -83,7 +83,7 @@ class ApiEmployeeController extends Controller
         // }
         $employee = Employee::where('id', $id)->first();
         $phone = Str::after($request->phone, '+');
-        $pin = $this->generateEmployeePin();
+        $pin = $this->checkEmployeePin($request->pin_code);
         $pin_code = str_pad($pin, 4, "0", STR_PAD_LEFT);
         $employee->name = $request->name;
         $employee->position = $request->position;
