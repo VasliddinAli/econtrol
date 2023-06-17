@@ -39,12 +39,14 @@ class ApiEmployeeController extends Controller
         // }
         $employee = new Employee();
         $phone = Str::after($request->phone, '+');
+        $pin = $this->checkEmployeePin();
+        $pin_code = str_pad($pin, 4, "0", STR_PAD_LEFT);
         $employee->name = $request->name;
         $employee->position = $request->position;
         $employee->status = $request->status;
         $employee->phone = $phone;
-        $employee->pin_code = $request->pin_code;
-        $employee->qrcode = "https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=$request->pin_code";
+        $employee->pin_code = $pin_code;
+        $employee->qrcode = "https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=$pin_code";
         $employee->save();
         return $this->sendResponse($employee, true, "Employee Created");
     }
@@ -67,14 +69,12 @@ class ApiEmployeeController extends Controller
         // }
         $employee = Employee::where('id', $id)->first();
         $phone = Str::after($request->phone, '+');
-        $pin = $this->checkEmployeePin();
-        $pin_code = str_pad($pin, 4, "0", STR_PAD_LEFT);
         $employee->name = $request->name;
         $employee->position = $request->position;
         $employee->status = $request->status;
         $employee->phone = $phone;
-        $employee->pin_code = $pin_code;
-        $employee->qrcode = "https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=$pin_code";
+        $employee->pin_code = $request->pin_code;
+        $employee->qrcode = "https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=$request->pin_code";
         $employee->save();
         return $this->sendResponse($employee, true, "Employee Updated");
     }
