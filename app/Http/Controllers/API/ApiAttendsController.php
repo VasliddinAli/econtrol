@@ -123,4 +123,26 @@ class ApiAttendsController extends Controller
             return $this->sendResponse(null, false, "Mavjud bo'lmagan hisobot");
         }
     }
+
+
+
+    public function AttendanceDelete($id)
+    {
+        $attendace = Attendance::where('id', $id)->first();
+        unlink($attendace->image);
+        $attendace->delete();
+        return $this->sendResponse(null, true, "Attendance success delete!");
+    }
+
+    public function AttendanceWarning($id)
+    {
+        $attendance = Attendance::where('id', $id)->first();
+        if ($attendance->warning != 1) {
+            $attendance->warning = 1;
+        } else {
+            $attendance->warning = 0;
+        }
+        $attendance->save();
+        return $this->sendResponse($attendance, true, "Device Updated");
+    }
 }

@@ -57,10 +57,10 @@ Route::prefix('purpose')->group(function () {
 });
 
 Route::prefix('attendance')->group(function () {
-    Route::get('list', [ApiAttendanceController::class, 'getAttendance']);
-    Route::post('add', [ApiAttendanceController::class, 'addAttends']);
-    Route::post('add/offline', [ApiAttendanceController::class, 'addAttendsOffline']);
-    Route::post('late/purpose', [ApiAttendanceController::class, 'forLatePurpose']);
-    Route::get('delete/{id}', [ApiAttendanceController::class, 'AttendanceDelete']);
-    Route::post('warning/{id}', [ApiAttendanceController::class, 'AttendanceWarning']);
+    Route::get('list', [ApiAttendsController::class, 'getAttendance']);
+    Route::post('add', [ApiAttendsController::class, 'addAttends']);
+    Route::post('add/offline', [ApiAttendsController::class, 'addAttendsOffline']);
+    Route::post('late/purpose', [ApiAttendsController::class, 'forLatePurpose']);
+    Route::get('delete/{id}', [ApiAttendsController::class, 'AttendanceDelete']);
+    Route::post('warning/{id}', [ApiAttendsController::class, 'AttendanceWarning']);
 });
