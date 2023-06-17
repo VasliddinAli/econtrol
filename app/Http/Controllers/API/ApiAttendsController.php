@@ -15,20 +15,20 @@ class ApiAttendsController extends Controller
 {
     public function getAttendance()
     {
-        $device = Device::where(['status' => 'active', 'token' => $this->getToken()])->first();
-        if ($device == null) {
-            return $this->sendResponse(null, false, "Not Found Device", 401);
-        }
+        // $device = Device::where(['status' => 'active', 'token' => $this->getToken()])->first();
+        // if ($device == null) {
+        //     return $this->sendResponse(null, false, "Not Found Device", 401);
+        // }
         $attendances = Attendance::get();
         return $this->sendResponse($attendances, true, "");
     }
 
     public function checkDate()
     {
-        $device = Device::where(['status' => 'active', 'token' => $this->getToken()])->first();
-        if ($device == null) {
-            return $this->sendResponse(null, false, "Not Found Device", 401);
-        }
+        // $device = Device::where(['status' => 'active', 'token' => $this->getToken()])->first();
+        // if ($device == null) {
+        //     return $this->sendResponse(null, false, "Not Found Device", 401);
+        // }
         $time = Carbon::now();
         $now_time = Carbon::now()->timestamp;
         $check_time = Carbon::create($time->year, $time->month, $time->day, 8, 0, 0)->timestamp;
@@ -41,10 +41,10 @@ class ApiAttendsController extends Controller
 
     public function addAttends(Request $request)
     {
-        $device = Device::where(['status' => 'active', 'token' => $this->getToken()])->first();
-        if ($device == null) {
-            return $this->sendResponse(null, false, "Not Found Device", 401);
-        }
+        // $device = Device::where(['status' => 'active', 'token' => $this->getToken()])->first();
+        // if ($device == null) {
+        //     return $this->sendResponse(null, false, "Not Found Device", 401);
+        // }
         $moment = true;
         $date = $this->checkdate();
         $purposes = [];
@@ -82,10 +82,10 @@ class ApiAttendsController extends Controller
 
     public function addAttendsOffline(Request $request)
     {
-        $device = Device::where(['status' => 'active', 'token' => $this->getToken()])->first();
-        if ($device == null) {
-            return $this->sendResponse(null, false, "Not Found Device", 401);
-        }
+        // $device = Device::where(['status' => 'active', 'token' => $this->getToken()])->first();
+        // if ($device == null) {
+        //     return $this->sendResponse(null, false, "Not Found Device", 401);
+        // }
         $files = $request->file('image');
         $file = Str::random(20);
         $ext = strtolower($files->getClientOriginalExtension());
@@ -107,10 +107,10 @@ class ApiAttendsController extends Controller
 
     public function forLatePurpose(Request $request)
     {
-        $device = Device::where(['status' => 'active', 'token' => $this->getToken()])->first();
-        if ($device == null) {
-            return $this->sendResponse(null, false, "Not Found Device", 401);
-        }
+        // $device = Device::where(['status' => 'active', 'token' => $this->getToken()])->first();
+        // if ($device == null) {
+        //     return $this->sendResponse(null, false, "Not Found Device", 401);
+        // }
         $attendance = Attendance::where([
             'id' => $request->attendance_id,
             'employee_id' => $request->employee_id,
