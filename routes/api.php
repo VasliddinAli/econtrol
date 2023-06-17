@@ -26,6 +26,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::prefix('ceo')->group(function () {
     Route::get('list', [ApiCEOController::class, 'getCeos']);
+    Route::get('view/{id}', [ApiCEOController::class, 'getCeo']);
     Route::post('add', [ApiCEOController::class, 'addCeo']);
     Route::post('update/{id}', [ApiCEOController::class, 'updateCeo']);
     Route::get('delete/{id}', [ApiCEOController::class, 'deleteCeo']);

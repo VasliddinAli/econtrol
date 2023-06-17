@@ -15,6 +15,11 @@ class ApiCEOController extends Controller
         $ceo = CEO::where('status', 'active')->get();
         return $this->sendResponse($ceo, true, "");
     }
+    public function getCeo($id)
+    {
+        $ceo = CEO::where('id', $id)->first();
+        return $this->sendResponse($ceo, true, "show 1 element");
+    }
     public function addCeo(Request $request)
     {
         $phone = Str::after($request->phone, '+');
