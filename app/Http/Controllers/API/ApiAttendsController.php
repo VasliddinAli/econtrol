@@ -22,7 +22,7 @@ class ApiAttendsController extends Controller
         $attendances = Attendance::get()->each(function($item){
             $attendace = $item;
             $attendace['employee_name'] = $attendace->employee->name;
-            $attendace['purpose_name'] = $attendace->purpose->purpose;
+            $attendace['purpose_name'] = $attendace->purpose == null ? null : $attendace->purpose->purpose;
             $attendace['device_name'] = $attendace->device->name;
             unset($attendace->employee, $attendace->purpose, $attendace->device);
         });
