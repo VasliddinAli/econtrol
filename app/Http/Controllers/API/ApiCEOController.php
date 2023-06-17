@@ -15,11 +15,6 @@ class ApiCEOController extends Controller
         $ceo = CEO::where('status', 'active')->get();
         return $this->sendResponse($ceo, true, "");
     }
-    public function getCeo($id)
-    {
-        $ceo = CEO::where('id', $id)->first();
-        return $this->sendResponse($ceo, true, "show 1 element");
-    }
     public function addCeo(Request $request)
     {
         $phone = Str::after($request->phone, '+');
@@ -38,7 +33,7 @@ class ApiCEOController extends Controller
         $ceo->phone = $phone;
         $ceo->password = $request->password;
         $ceo->save();
-        return $this->sendResponse($ceo, true, "Device Updated");
+        return $this->sendResponse($ceo, true, "CEO Updated");
     }
     public function deleteCeo($ceo_id)
     {
