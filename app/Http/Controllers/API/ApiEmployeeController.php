@@ -31,20 +31,6 @@ class ApiEmployeeController extends Controller
         }
     }
 
-    public function checkEmployeePin($pin_code)
-    {
-        // $device = Device::where(['status' => 'active', 'token' => $this->getToken()])->first();
-        // if ($device == null) {
-        //     return $this->sendResponse(null, false, "Not Found Device", 401);
-        // }
-        $pin = Employee::where('pin_code', $pin_code)->first();
-        if ($pin == null) {
-            return $pin_code;
-        } else {
-            return $this->sendResponse(null, false, "Pin kod avval ishlatilgan qayta uruning");
-        }
-    }
-
     public function addEmployee(Request $request)
     {
         // $device = Device::where(['status' => 'active', 'token' => $this->getToken()])->first();
@@ -75,24 +61,42 @@ class ApiEmployeeController extends Controller
         return $this->sendResponse($employee, true, "show 1 element");
     }
 
+    public function checkEmployeePin($pin_code)
+    {
+        // $device = Device::where(['status' => 'active', 'token' => $this->getToken()])->first();
+        // if ($device == null) {
+        //     return $this->sendResponse(null, false, "Not Found Device", 401);
+        // }
+        $pin = Employee::where('pin_code', $pin_code)->first();
+        if ($pin == null) {
+            return $pin_code;
+        } else {
+            return false;
+        }
+    }
+
     public function updateEmployee(Request $request, $id)
     {
         // $device = Device::where(['status' => 'active', 'token' => $this->getToken()])->first();
         // if ($device == null) {
         //     return $this->sendResponse(null, false, "Not Found Device", 401);
         // }
-        $employee = Employee::where('id', $id)->first();
-        $phone = Str::after($request->phone, '+');
-        $pin = $this->checkEmployeePin($request->pin_code);
-        $pin_code = str_pad($pin, 4, "0", STR_PAD_LEFT);
-        $employee->name = $request->name;
-        $employee->position = $request->position;
-        $employee->status = $request->status;
-        $employee->phone = $phone;
-        $employee->pin_code = $pin_code;
-        $employee->qrcode = "https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=$pin_code";
-        $employee->save();
-        return $this->sendResponse($employee, true, "Employee Updated");
+        if ($this->checkEmployeePin($request->pin_code) == false) {
+            return $this->sendResponse(null, false, "Pin kod avval ishlatilgan qayta uruning");
+        } else {
+            $employee = Employee::where('id', $id)->first();
+            $phone = Str::after($request->phone, '+');
+            $pin = $this->checkEmployeePin($request->pin_code);
+            $pin_code = str_pad($pin, 4, "0", STR_PAD_LEFT);
+            $employee->name = $request->name;
+            $employee->position = $request->position;
+            $employee->status = $request->status;
+            $employee->phone = $phone;
+            $employee->pin_code = $pin_code;
+            $employee->qrcode = "https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=$pin_code";
+            $employee->save();
+            return $this->sendResponse($employee, true, "Employee Updated");
+        }
     }
 
     public function deleteEmployee($employee_id)
