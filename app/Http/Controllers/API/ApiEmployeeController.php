@@ -16,7 +16,7 @@ class ApiEmployeeController extends Controller
         return $this->sendResponse($employees, true, "");
     }
 
-    public function checkEmployeePin()
+    public function generateEmployeePin()
     {
         // $device = Device::where(['status' => 'active', 'token' => $this->getToken()])->first();
         // if ($device == null) {
@@ -27,7 +27,21 @@ class ApiEmployeeController extends Controller
         if ($pin == null) {
             return $pin_code;
         } else {
-            return $this->checkEmployeePin();
+            return $this->generateEmployeePin();
+        }
+    }
+
+    public function checkEmployeePin($pin_code)
+    {
+        // $device = Device::where(['status' => 'active', 'token' => $this->getToken()])->first();
+        // if ($device == null) {
+        //     return $this->sendResponse(null, false, "Not Found Device", 401);
+        // }
+        $pin = Employee::where('pin_code', $pin_code)->first();
+        if ($pin == null) {
+            return $pin_code;
+        } else {
+            return $this->generateEmployeePin();
         }
     }
 
@@ -39,7 +53,7 @@ class ApiEmployeeController extends Controller
         // }
         $employee = new Employee();
         $phone = Str::after($request->phone, '+');
-        $pin = $this->checkEmployeePin();
+        $pin = $this->generateEmployeePin();
         $pin_code = str_pad($pin, 4, "0", STR_PAD_LEFT);
         $employee->name = $request->name;
         $employee->position = $request->position;
@@ -69,12 +83,14 @@ class ApiEmployeeController extends Controller
         // }
         $employee = Employee::where('id', $id)->first();
         $phone = Str::after($request->phone, '+');
+        $pin = $this->generateEmployeePin();
+        $pin_code = str_pad($pin, 4, "0", STR_PAD_LEFT);
         $employee->name = $request->name;
         $employee->position = $request->position;
         $employee->status = $request->status;
         $employee->phone = $phone;
-        $employee->pin_code = $request->pin_code;
-        $employee->qrcode = "https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=$request->pin_code";
+        $employee->pin_code = $pin_code;
+        $employee->qrcode = "https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=$pin_code";
         $employee->save();
         return $this->sendResponse($employee, true, "Employee Updated");
     }
