@@ -31,7 +31,6 @@ class ApiCEOController extends Controller
         $phone = Str::after($request->phone, '+');
         $ceo->name = $request->name;
         $ceo->phone = $phone;
-        $ceo->password = $request->password;
         $ceo->save();
         return $this->sendResponse($ceo, true, "CEO Updated");
     }
