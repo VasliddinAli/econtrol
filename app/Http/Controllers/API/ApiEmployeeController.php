@@ -62,7 +62,7 @@ class ApiEmployeeController extends Controller
         $employee->pin_code = $pin_code;
         $employee->qrcode = "https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=$pin_code";
         $employee->save();
-        return $this->sendResponse($employee, true, "Employee Created");
+        return $this->sendResponse($employee, true, "Employee Created", 1);
     }
 
     public function getEmployee($id)
