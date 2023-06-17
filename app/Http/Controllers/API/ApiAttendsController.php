@@ -19,7 +19,13 @@ class ApiAttendsController extends Controller
         // if ($device == null) {
         //     return $this->sendResponse(null, false, "Not Found Device", 401);
         // }
-        $attendances = Attendance::get();
+        $attendances = Attendance::get()->each(function($item){
+            $attendace = $item;
+            $attendace['employee_name'] = $attendace->employee->name;
+            $attendace['purpose_name'] = $attendace->purpose->purpose;
+            $attendace['device_name'] = $attendace->device->name;
+            unset($attendace->employee, $attendace->purpose, $attendace->device);
+        });
         return $this->sendResponse($attendances, true, "");
     }
 
