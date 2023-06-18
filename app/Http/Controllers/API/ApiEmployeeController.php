@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Models\Attendance;
 use App\Models\Device;
 use App\Models\Employee;
 use Illuminate\Http\Request;
@@ -14,6 +15,20 @@ class ApiEmployeeController extends Controller
     {
         $employees = Employee::where('status', '!=', 'deleted')->get();
         return $this->sendResponse($employees, true, "");
+    }
+
+    public function getEmployee($id)
+    {
+        // $device = Device::where(['status' => 'active', 'token' => $this->getToken()])->first();
+        // if ($device == null) {
+        //     return $this->sendResponse(null, false, "Not Found Device", 401);
+        // }
+        $employee = Employee::where('id', $id)->first();
+        $employee = Attendance::where(['employee_id' => $id, 'warning' => 1])->get();
+        
+
+
+        return $this->sendResponse($employee, true, "show 1 element");
     }
 
     public function generateEmployeePin()
@@ -49,16 +64,6 @@ class ApiEmployeeController extends Controller
         $employee->qrcode = "https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=$pin_code";
         $employee->save();
         return $this->sendResponse($employee, true, "Employee Created");
-    }
-
-    public function getEmployee($id)
-    {
-        // $device = Device::where(['status' => 'active', 'token' => $this->getToken()])->first();
-        // if ($device == null) {
-        //     return $this->sendResponse(null, false, "Not Found Device", 401);
-        // }
-        $employee = Employee::where('id', $id)->first();
-        return $this->sendResponse($employee, true, "show 1 element");
     }
 
     public function checkEmployeePin($pin_code)
