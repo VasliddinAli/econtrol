@@ -23,11 +23,16 @@ class ApiEmployeeController extends Controller
         // if ($device == null) {
         //     return $this->sendResponse(null, false, "Not Found Device", 401);
         // }
-        $employee = Employee::where('id', $id)->first();
+        $employee = Employee::get()->each(function ($item) {
+            $employee = $item;
+            $employee['employee_name'] = $employee->employee->name;
+            $employee['purpose_name'] = $employee->purpose == null ? null : $employee->purpose->purpose;
+            $employee['device_name'] = $employee->device->name;
+            unset($employee->employee, $employee->purpose, $employee->device);
+        });
         $warnings = Attendance::where(['employee_id' => $id, 'warning' => 1])->get();
         $employee['warnings'] = $warnings;
-
-        return $this->sendResponse($employee, true, "show 1 element");
+        return $this->sendResponse($employee, true, "");
     }
 
     public function generateEmployeePin()
