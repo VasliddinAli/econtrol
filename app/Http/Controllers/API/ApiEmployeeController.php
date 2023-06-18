@@ -24,9 +24,8 @@ class ApiEmployeeController extends Controller
         //     return $this->sendResponse(null, false, "Not Found Device", 401);
         // }
         $employee = Employee::where('id', $id)->first();
-        $employee = Attendance::where(['employee_id' => $id, 'warning' => 1])->get();
-        
-
+        $warnings = Attendance::where(['employee_id' => $id, 'warning' => 1])->get();
+        $employee['warnings'] = $warnings;
 
         return $this->sendResponse($employee, true, "show 1 element");
     }
